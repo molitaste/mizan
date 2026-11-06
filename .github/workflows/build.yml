@@ -1,0 +1,61 @@
+name: Build Mizan APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-version: '8.9'
+
+      - name: Download OCR language files (English + Arabic)
+        run: |
+          mkdir -p app/src/main/assets/tessdata
+          curl -fsSL -o app/src/main/assets/tessdata/eng.traineddata \
+            https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata
+          curl -fsSL -o app/src/main/assets/tessdata/ara.traineddata \
+            https://github.com/tesseract-ocr/tessdata/raw/main/ara.traineddata
+          ls -la app/src/main/assets/tessdata
+
+      - name: Unit tests (scaling, units, temperature, parser)
+        run: gradle testDebugUnitTest --stacktrace
+
+      - name: Build APK
+        env:
+          MIZAN_KEYSTORE_B64: ${{ secrets.MIZAN_KEYSTORE_B64 }}
+          MIZAN_KEYSTORE_PASSWORD: ${{ secrets.MIZAN_KEYSTORE_PASSWORD }}
+          MIZAN_KEY_ALIAS: ${{ secrets.MIZAN_KEY_ALIAS }}
+          MIZAN_KEY_PASSWORD: ${{ secrets.MIZAN_KEY_PASSWORD }}
+        run: gradle assembleRelease --stacktrace
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/release/app-release.apk Mizan.apk
+
+      - name: Upload APK (Actions artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mizan-apk
+          path: Mizan.apk
+
+      - name: Publish as GitHub Release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Mizan build ${{ github.run_number }}
+          files: Mizan.apk
