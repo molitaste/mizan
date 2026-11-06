@@ -71,7 +71,8 @@ object ImportSession {
     val pages = mutableStateListOf<SourceFile>()
     var draft: ImportDraft? = null
     var meanConfidence: Int? = null
-    fun clear() { pages.clear(); draft = null; meanConfidence = null }
+    var manual = false
+    fun clear() { pages.clear(); draft = null; meanConfidence = null; manual = false }
 }
 
 @Composable

@@ -184,6 +184,7 @@ fun EditorScreen(
                         }
                     }
                 } else {
+                    Text("⚖ " + s.scaleHint, style = MaterialTheme.typography.titleSmall, color = p.primary)
                     ScalePanel(c, factor, totals, ::setFactor, wide, onMakeBaseline = {
                         val f = factor
                         update { Scaling.applyFactor(it, f) }

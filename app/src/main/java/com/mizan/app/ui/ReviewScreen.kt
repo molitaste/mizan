@@ -70,6 +70,9 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
     var std by remember { mutableStateOf<VolumeStd?>(null) }
     var convert by remember { mutableStateOf(settings.autoConvertImports) }
     var showRaw by remember { mutableStateOf(false) }
+    var pasteText by remember { mutableStateOf("") }
+    var askGenerate by remember { mutableStateOf(false) }
+    val manual = ImportSession.manual
 
     fun built(): RecipeContent {
         var c = RecipeContent(
@@ -97,6 +100,42 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
                 CategoryField(category, { category = it }, Modifier.fillMaxWidth())
             }
 
+            // type / paste
+            MCard {
+                Text(s.typeOrPaste, style = MaterialTheme.typography.titleSmall)
+                OutlinedTextField(pasteText, { pasteText = it }, Modifier.fillMaxWidth().padding(top = 6.dp),
+                    placeholder = { Text(s.typeHint) }, minLines = if (manual) 6 else 3)
+                PrimaryButton(s.readText, Icons.Filled.Check, Modifier.padding(top = 8.dp), enabled = pasteText.isNotBlank()) {
+                    val pd = RecipeParser.parseText(pasteText)
+                    if (title.isBlank() && pd.title.isNotBlank()) { title = pd.title; titleWarn = false }
+                    ings = ings + pd.ingredients
+                    steps = steps + pd.steps
+                    if (pd.notes.isNotBlank()) notes = (notes + "\n" + pd.notes).trim()
+                    unassigned = unassigned + pd.unassigned
+                    pasteText = ""
+                }
+            }
+
+            // ingredients – the list to check and confirm
+            val previewPct = com.mizan.app.core.Scaling.percentages(RecipeContent(ingredients = ings.map { i -> std?.let { Converter.applyStandard(i, it) } ?: i }))
+            val previewTotal = com.mizan.app.core.Scaling.totals(ings).totalG
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(s.ingredientsHeader + " (${ings.size})", style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
+                if (ings.any { it.uncertain }) TextButton(onClick = {
+                    ings = ings.map { if (Units.get(it.unit).ambiguous || it.amount == null) it else it.copy(uncertain = false) }
+                }) { Text("✓ " + s.confirmAll, fontWeight = FontWeight.Bold) }
+            }
+            if (ings.isEmpty()) Text(s.emptyList, color = p.muted)
+            ings.forEachIndexed { i, ing ->
+                ReviewIngredient(ing, i, ings.size, previewPct[ing.id],
+                    onChange = { n -> ings = ings.map { if (it.id == ing.id) n else it } },
+                    onMove = { dlt -> ings = ings.moved(i, i + dlt) },
+                    onDelete = { ings = ings.filter { it.id != ing.id } })
+            }
+            OutlineButton(s.addIngredient, Icons.Filled.Add) { ings = ings + Ingredient(unit = "g") }
+            if (previewTotal != null) Text(s.totalBatch + ": " + com.mizan.app.core.Num.fmt(previewTotal) + " g · 100%",
+                fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+
             // units
             MCard(warn = hasAmbiguous && std == null) {
                 if (hasAmbiguous) {
@@ -115,15 +154,6 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
                 Text(s.densityInfo, style = MaterialTheme.typography.bodySmall, color = p.muted, modifier = Modifier.padding(top = 6.dp))
             }
 
-            // ingredients
-            Text(s.ingredientsHeader + " (${ings.size})", style = MaterialTheme.typography.titleLarge)
-            ings.forEachIndexed { i, ing ->
-                ReviewIngredient(ing, i, ings.size,
-                    onChange = { n -> ings = ings.map { if (it.id == ing.id) n else it } },
-                    onMove = { dlt -> ings = ings.moved(i, i + dlt) },
-                    onDelete = { ings = ings.filter { it.id != ing.id } })
-            }
-            OutlineButton(s.addIngredient, Icons.Filled.Add) { ings = ings + Ingredient(unit = "g") }
 
             // steps
             Text(s.steps + " (${steps.size})", style = MaterialTheme.typography.titleLarge)
@@ -181,7 +211,7 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
             }
 
             // raw OCR text
-            MCard {
+            if (!manual) MCard {
                 Row(Modifier.fillMaxWidth().clickable { showRaw = !showRaw }, verticalAlignment = Alignment.CenterVertically) {
                     Text(s.rawText, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                     Icon(if (showRaw) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, null)
@@ -194,17 +224,28 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
             }
         }
         Row(Modifier.fillMaxWidth().background(p.surface).navigationBarsPadding().padding(16.dp, 10.dp)) {
-            AccentButton(s.createRecipe, Icons.Filled.Check, Modifier.fillMaxWidth()) {
-                val r = Store.create(built(), ImportSession.pages.toList(), label = s.importedLabel)
-                ImportSession.clear()
-                onCreated(r.id)
+            AccentButton(s.generateRecipe, Icons.Filled.Check, Modifier.fillMaxWidth(), enabled = ings.isNotEmpty()) {
+                val open = ings.count { it.uncertain || it.amount == null || Units.get(it.unit).ambiguous && std == null }
+                if (open > 0) askGenerate = true else {
+                    val r = Store.create(built(), ImportSession.pages.toList(), label = if (manual) s.createdLabel else s.importedLabel)
+                    ImportSession.clear()
+                    onCreated(r.id)
+                }
             }
         }
+    }
+    if (askGenerate) {
+        val open = ings.count { it.uncertain || it.amount == null || Units.get(it.unit).ambiguous && std == null }
+        ConfirmDialog(s.unconfirmedWarn(open), s.generateRecipe, onConfirm = {
+            val r = Store.create(built(), ImportSession.pages.toList(), label = if (manual) s.createdLabel else s.importedLabel)
+            ImportSession.clear()
+            onCreated(r.id)
+        }, onDismiss = { askGenerate = false })
     }
 }
 
 @Composable
-private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, onChange: (Ingredient) -> Unit, onMove: (Int) -> Unit, onDelete: () -> Unit) {
+private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, pct: Double?, onChange: (Ingredient) -> Unit, onMove: (Int) -> Unit, onDelete: () -> Unit) {
     val s = str
     val p = pal
     val amb = Units.get(ing.unit).ambiguous
@@ -215,6 +256,8 @@ private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, onChange: 
                 label = { Text(s.ingredientName) })
             NumberField(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.weight(0.9f), label = s.amount)
             UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.weight(0.9f))
+            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.weight(0.5f),
+                style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.End)
         }
         Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             when {

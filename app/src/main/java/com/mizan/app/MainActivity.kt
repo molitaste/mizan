@@ -76,7 +76,7 @@ fun AppNav() {
         composable("library") {
             LibraryScreen(
                 onOpen = { nav.navigate("editor/$it") },
-                onImport = { mode -> nav.navigate("import/$mode") },
+                onImport = { mode -> if (mode == "manual") nav.navigate("review") else nav.navigate("import/$mode") },
                 onSettings = { nav.navigate("settings") },
             )
         }

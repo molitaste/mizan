@@ -107,8 +107,11 @@ fun LibraryScreen(onOpen: (String) -> Unit, onImport: (String) -> Unit, onSettin
     var toDelete by remember { mutableStateOf<Recipe?>(null) }
 
     fun newRecipe() {
-        val r = Store.create(RecipeContent(title = ""), label = null)
-        onOpen("${r.id}?edit=true")
+        // typed recipes go through the same check-and-confirm list as scans
+        ImportSession.clear()
+        ImportSession.draft = com.mizan.app.core.ImportDraft()
+        ImportSession.manual = true
+        onImport("manual")
     }
 
     val cats = recipes.map { it.current.category.trim() }.filter { it.isNotEmpty() }.distinct().sorted()
