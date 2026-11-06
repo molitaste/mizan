@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import androidx.compose.foundation.background
@@ -7,6 +9,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -210,7 +213,7 @@ private fun StepCard(
         }
         // photos
         if (step.photos.isNotEmpty()) {
-            Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            FlowRow(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 step.photos.forEachIndexed { k, ph ->
                     Column(Modifier.width(200.dp)) {
                         Box(Modifier.size(200.dp, 150.dp).clip(RoundedCornerShape(10.dp)).clickable { onView(ph.file) }) {
@@ -237,7 +240,7 @@ private fun StepCard(
             }
         }
         // actions
-        Row(Modifier.padding(top = 10.dp).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+        FlowRow(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             SmallIconButton(Icons.Filled.PhotoCamera, s.takePhoto, camera)
             SmallIconButton(Icons.Filled.Image, s.choosePhoto, gallery)
             MicButton(onText = { t -> onChange { it.copy(text = (it.text.trimEnd() + " " + t).trim()) } })

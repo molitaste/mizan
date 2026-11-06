@@ -225,23 +225,42 @@ fun CheckBadge(text: String = str.needsCheck) {
 @Composable
 fun <T> Segmented(options: List<Pair<T, String>>, selected: T, onSelect: (T) -> Unit, modifier: Modifier = Modifier) {
     val p = pal
-    Row(modifier, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-        options.forEach { (v, label) ->
-            val on = v == selected
-            Box(
-                Modifier.weight(1f).heightIn(min = 48.dp).clip(RoundedCornerShape(10.dp))
-                    .background(if (on) p.primary else p.surface)
-                    .border(if (p.eink || on) 2.dp else 1.dp, if (on) p.primary else p.border, RoundedCornerShape(10.dp))
-                    .clickable { onSelect(v) }
-                    .padding(horizontal = 8.dp, vertical = 8.dp),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    (if (on && p.eink) "● " else "") + label,
-                    color = if (on) p.onPrimary else p.text, fontWeight = if (on) FontWeight.Bold else FontWeight.Medium,
-                    textAlign = TextAlign.Center, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelMedium,
-                )
+    @Composable
+    fun item(v: T, label: String, m: Modifier) {
+        val on = v == selected
+        Box(
+            m.heightIn(min = 46.dp).clip(RoundedCornerShape(10.dp))
+                .background(if (on) p.primary else p.surface)
+                .border(if (p.eink || on) 2.dp else 1.dp, if (on) p.primary else p.border, RoundedCornerShape(10.dp))
+                .clickable { onSelect(v) }
+                .padding(horizontal = 8.dp, vertical = 6.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                (if (on && p.eink) "● " else "") + label,
+                color = if (on) p.onPrimary else p.text, fontWeight = if (on) FontWeight.Bold else FontWeight.Medium,
+                textAlign = TextAlign.Center, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.labelMedium,
+            )
+        }
+    }
+    androidx.compose.foundation.layout.BoxWithConstraints(modifier) {
+        val minItem = 96.dp
+        val fits = maxWidth >= minItem * options.size + 6.dp * (options.size - 1)
+        if (fits) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                options.forEach { (v, label) -> item(v, label, Modifier.weight(1f)) }
+            }
+        } else {
+            // narrow screens (phones): wrap onto more lines instead of squeezing or scrolling sideways
+            val perRow = (maxWidth / (minItem + 6.dp)).toInt().coerceAtLeast(1)
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                options.chunked(perRow).forEach { rowItems ->
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        rowItems.forEach { (v, label) -> item(v, label, Modifier.weight(1f)) }
+                        repeat(perRow - rowItems.size) { Spacer(Modifier.weight(1f)) }
+                    }
+                }
             }
         }
     }

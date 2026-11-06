@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import androidx.compose.foundation.background
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -172,7 +175,7 @@ fun LibraryScreen(onOpen: (String) -> Unit, onImport: (String) -> Unit, onSettin
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                             SectionTitle(Icons.AutoMirrored.Filled.MenuBook, s.library)
-                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                                 AccentButton(s.newRecipe, Icons.Filled.Add) { newRecipe() }
                                 OutlineButton(s.scanPhoto, Icons.Filled.CameraAlt) { onImport("camera") }
                                 OutlineButton(s.images, Icons.Filled.Restaurant) { onImport("images") }
@@ -187,7 +190,7 @@ fun LibraryScreen(onOpen: (String) -> Unit, onImport: (String) -> Unit, onSettin
                                 Spacer(Modifier.width(10.dp))
                                 SmallIconButton(if (grid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView, "", { grid = !grid })
                             }
-                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                 Chip(s.all, filter.isEmpty()) { filter = "" }
                                 Chip("★ " + s.favorites, filter == FAV) { filter = if (filter == FAV) "" else FAV }
                                 cats.forEach { c -> Chip(c, filter == c) { filter = if (filter == c) "" else c } }

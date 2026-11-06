@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -117,7 +119,7 @@ fun SettingsScreen(onBack: () -> Unit) {
 
             Text(s.storage, style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(top = 8.dp))
             InfoBox(s.storageInfo)
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 PrimaryButton(s.makeBackup, Icons.Filled.Backup) {
                     scope.launch {
                         val f = withContext(Dispatchers.IO) { runCatching { Exporter.backup(ctx) }.getOrNull() }

@@ -1,9 +1,12 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -74,7 +77,7 @@ fun HistoryScreen(id: String, onBack: () -> Unit, onOpenRecipe: (String) -> Unit
                     }
                     Text(fmtDate(v.at), color = p.muted, style = MaterialTheme.typography.bodySmall)
                     Text(summaryOf(v.content), color = p.muted)
-                    Row(Modifier.padding(top = 8.dp).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FlowRow(Modifier.padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlineButton(s.view, Icons.Filled.Visibility) { viewing = v }
                         OutlineButton(s.restore, Icons.Filled.Restore) { restoring = v }
                         OutlineButton(s.duplicate, Icons.Filled.ContentCopy) {
@@ -122,7 +125,7 @@ private fun VersionViewer(v: Version, onDismiss: () -> Unit) {
                 c.steps.forEachIndexed { k, st ->
                     Text("${k + 1}. " + (if (st.title.isNotBlank()) st.title + ": " else "") + st.text +
                         (st.tempC?.let { "  [" + Temp.both(it) + "]" } ?: ""))
-                    if (st.photos.isNotEmpty()) Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    if (st.photos.isNotEmpty()) FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         st.photos.forEach { ph ->
                             Column(Modifier.width(120.dp)) {
                                 StoredImage(mediaFile(ph.file), Modifier.size(120.dp, 90.dp).clip(RoundedCornerShape(8.dp)))

@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import android.graphics.Bitmap
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -152,7 +155,7 @@ fun ImportScreen(mode: String, onBack: () -> Unit, onReview: () -> Unit) {
         HeaderBar(s.importTitle, onBack = { if (busy == null) { ImportSession.clear(); onBack() } })
         ContentColumn(Modifier.weight(1f)) {
             SectionTitle(Icons.Filled.CameraAlt, s.importTitle)
-            Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 OutlineButton(if (ImportSession.pages.isEmpty()) s.camera else s.addPage, Icons.Filled.CameraAlt, enabled = busy == null, onClick = camera)
                 OutlineButton(s.images, Icons.Filled.AddPhotoAlternate, enabled = busy == null, onClick = gallery)
                 OutlineButton(s.pdf, Icons.Filled.PictureAsPdf, enabled = busy == null) { pickPdf() }
@@ -164,7 +167,7 @@ fun ImportScreen(mode: String, onBack: () -> Unit, onReview: () -> Unit) {
             }
             if (ImportSession.pages.isNotEmpty()) {
                 Text(s.pages + " (${ImportSession.pages.size})", style = MaterialTheme.typography.titleMedium)
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     ImportSession.pages.forEachIndexed { i, src ->
                         Column(Modifier.width(170.dp)) {
                             Box(Modifier.size(170.dp, 220.dp).clip(RoundedCornerShape(10.dp)).background(Color.White)) {

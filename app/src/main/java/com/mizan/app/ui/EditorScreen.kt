@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 package com.mizan.app.ui
 
 import android.content.Intent
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -153,7 +156,7 @@ fun EditorScreen(
                         AccentButton(s.saveVersion, Icons.Filled.Save) { saveDialog = true }
                     }
                 }
-                if (!wide) Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (!wide) FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     AccentButton(s.saveVersion, Icons.Filled.Save) { saveDialog = true }
                     OutlineButton(s.history, Icons.Filled.History, onClick = onHistory)
                     OutlineButton(s.pdf, Icons.Filled.PictureAsPdf) { onExport("pdf") }
@@ -173,7 +176,7 @@ fun EditorScreen(
                                 OutlinedTextField(c.yieldText, { v -> update { it.copy(yieldText = v) } }, label = { Text(s.yieldText) },
                                     modifier = Modifier.weight(1f), singleLine = true)
                             }
-                            Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                 Text(s.coverPhoto, fontWeight = FontWeight.SemiBold)
                                 SmallIconButton(Icons.Filled.PhotoCamera, s.takePhoto, coverCam)
                                 SmallIconButton(Icons.Filled.Image, s.choosePhoto, coverPick)
@@ -299,7 +302,7 @@ private fun ScalePanel(c: RecipeContent, factor: Double, totals: Scaling.Totals,
                 error = multError, suffix = "×", decimals = 4)
             SmallIconButton(Icons.Filled.Add, "+", { setFactor((kotlin.math.floor(factor * 4 + 1e-9) + 1) / 4) })
         }
-        Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        FlowRow(Modifier.padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             listOf(0.5, 1.0, 1.5, 2.0, 3.0, 5.0).forEach { f -> Chip("${Num.fmt(f)}×", Num.approxEq(f, factor)) { setFactor(f) } }
         }
         if (multError) Text(s.invalidNumber, color = p.warnBorder, style = MaterialTheme.typography.bodySmall)
