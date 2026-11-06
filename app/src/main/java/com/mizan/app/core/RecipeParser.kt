@@ -171,7 +171,9 @@ object RecipeParser {
     }
 
     fun parse(lines: List<SrcLine>): ImportDraft {
-        val clean = lines.map { it.copy(text = it.text.replace(' ', ' ').trim()) }.filter { it.text.isNotEmpty() }
+        val clean = lines.map { it.copy(text = it.text.replace(Regex("[\\s\u00A0]+"), " ").trim()) }
+            .filter { l -> l.text.any { it.isLetterOrDigit() } }
+            .filterNot { l -> Regex("^((page|صفحة)\\s*\\d{1,3}(\\s*(/|of|من)\\s*\\d{1,3})?|-\\s*\\d{1,3}\\s*-)$", RegexOption.IGNORE_CASE).matches(l.text) }
         val raw = clean.joinToString("\n") { it.text }
         val lowWords = clean.flatMap { it.lowWords }.distinct()
         if (clean.isEmpty()) return ImportDraft(rawText = raw)

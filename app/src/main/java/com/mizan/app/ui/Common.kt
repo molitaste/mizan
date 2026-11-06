@@ -37,6 +37,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -373,6 +374,53 @@ fun AmountBox(
                 ) { inner() }
             },
         )
+    }
+}
+
+/** Compact text box (no floating label, small padding) for dense lists. Grows to [maxLines]. */
+@Composable
+fun CompactField(
+    value: String,
+    onValue: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    placeholder: String = "",
+    maxLines: Int = 3,
+    bold: Boolean = false,
+) {
+    val p = pal
+    var focused by remember { mutableStateOf(false) }
+    androidx.compose.foundation.text.BasicTextField(
+        value = value,
+        onValueChange = onValue,
+        maxLines = maxLines,
+        textStyle = MaterialTheme.typography.bodyLarge.copy(color = p.text, fontWeight = if (bold) FontWeight.SemiBold else FontWeight.Normal),
+        cursorBrush = androidx.compose.ui.graphics.SolidColor(p.primary),
+        modifier = modifier.onFocusChanged { focused = it.isFocused },
+        decorationBox = { inner ->
+            Box(
+                Modifier.fillMaxWidth().heightIn(min = 44.dp).clip(RoundedCornerShape(10.dp)).background(p.surface)
+                    .border(if (focused || p.eink) 2.dp else 1.dp, if (focused) p.primary else p.border, RoundedCornerShape(10.dp))
+                    .padding(horizontal = 10.dp, vertical = 8.dp),
+                contentAlignment = Alignment.CenterStart,
+            ) {
+                if (value.isEmpty() && placeholder.isNotEmpty()) Text(placeholder, color = p.muted, style = MaterialTheme.typography.bodyMedium, maxLines = 1)
+                inner()
+            }
+        },
+    )
+}
+
+/** Small menu for row actions (keeps lists compact). */
+@Composable
+fun RowMenu(items: List<Triple<String, Boolean, () -> Unit>>) {
+    var open by remember { mutableStateOf(false) }
+    Box {
+        IconButton(onClick = { open = true }, modifier = Modifier.size(40.dp)) { Icon(Icons.Filled.MoreVert, null) }
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            items.forEach { (label, enabled, action) ->
+                DropdownMenuItem(text = { Text(label) }, enabled = enabled, onClick = { open = false; action() })
+            }
+        }
     }
 }
 

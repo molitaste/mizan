@@ -3,6 +3,8 @@
 package com.mizan.app.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -75,6 +77,7 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
     var showRaw by remember { mutableStateOf(false) }
     var pasteText by remember { mutableStateOf("") }
     var askGenerate by remember { mutableStateOf(false) }
+    var showUnassigned by remember { mutableStateOf(false) }
     val manual = ImportSession.manual
 
     fun built(): RecipeContent {
@@ -129,11 +132,14 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
                 }) { Text("✓ " + s.confirmAll, fontWeight = FontWeight.Bold) }
             }
             if (ings.isEmpty()) Text(s.emptyList, color = p.muted)
+            if (ings.isNotEmpty()) Column(Modifier.fillMaxWidth().clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
+                .border(if (p.eink) 2.dp else 1.dp, p.border, androidx.compose.foundation.shape.RoundedCornerShape(12.dp)).background(p.surface)) {
             ings.forEachIndexed { i, ing ->
                 ReviewIngredient(ing, i, ings.size, previewPct[ing.id],
                     onChange = { n -> ings = ings.map { if (it.id == ing.id) n else it } },
                     onMove = { dlt -> ings = ings.moved(i, i + dlt) },
                     onDelete = { ings = ings.filter { it.id != ing.id } })
+            }
             }
             OutlineButton(s.addIngredient, Icons.Filled.Add) { ings = ings + Ingredient(unit = "g") }
             if (previewTotal != null) Text(s.totalBatch + ": " + com.mizan.app.core.Num.fmt(previewTotal) + " g · 100%",
@@ -161,53 +167,56 @@ fun ReviewScreen(onBack: () -> Unit, onCreated: (String) -> Unit) {
             // steps
             Text(s.steps + " (${steps.size})", style = MaterialTheme.typography.titleLarge)
             steps.forEachIndexed { i, st ->
-                MCard(Modifier.fillMaxWidth(), warn = st.uncertain) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("${i + 1}", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge, color = p.accent)
-                        Spacer(Modifier.width(10.dp))
-                        OutlinedTextField(st.title, { v -> steps = steps.map { if (it.id == st.id) it.copy(title = v) else it } },
-                            Modifier.weight(1f), placeholder = { Text(s.stepTitle) }, singleLine = true)
-                        if (st.uncertain) TextButton(onClick = { steps = steps.map { if (it.id == st.id) it.copy(uncertain = false) else it } }) {
-                            Text("⚠ " + s.confirmed)
-                        }
+                Row(
+                    Modifier.fillMaxWidth().clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
+                        .background(if (st.uncertain) p.warnBg else p.surface)
+                        .border(if (st.uncertain || p.eink) 2.dp else 1.dp, if (st.uncertain) p.warnBorder else p.border, androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
+                        .padding(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    Text("${i + 1}", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium, color = p.accent,
+                        modifier = Modifier.width(26.dp).padding(top = 10.dp))
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        if (st.title.isNotBlank()) CompactField(st.title, { v -> steps = steps.map { if (it.id == st.id) it.copy(title = v) else it } },
+                            Modifier.fillMaxWidth(), s.stepTitle, maxLines = 2, bold = true)
+                        CompactField(st.text, { v -> steps = steps.map { if (it.id == st.id) it.copy(text = v) else it } },
+                            Modifier.fillMaxWidth(), s.stepText, maxLines = 12)
+                        if (st.uncertain) Text("⚠ " + s.confirmed, color = p.primary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.clickable { steps = steps.map { if (it.id == st.id) it.copy(uncertain = false) else it } }.padding(4.dp))
                     }
-                    OutlinedTextField(st.text, { v -> steps = steps.map { if (it.id == st.id) it.copy(text = v) else it } },
-                        Modifier.fillMaxWidth().padding(top = 6.dp), minLines = 2)
-                    Row {
-                        IconButton(onClick = { steps = steps.moved(i, i - 1) }, enabled = i > 0) { Icon(Icons.Filled.KeyboardArrowUp, s.moveUp) }
-                        IconButton(onClick = { steps = steps.moved(i, i + 1) }, enabled = i < steps.size - 1) { Icon(Icons.Filled.KeyboardArrowDown, s.moveDown) }
-                        IconButton(onClick = {
-                            if (i + 1 < steps.size) {
-                                val b = steps[i + 1]
-                                val merged = st.copy(text = (st.text + " " + (if (b.title.isNotBlank()) b.title + ": " else "") + b.text).trim(),
-                                    tempC = st.tempC ?: b.tempC, minutes = st.minutes ?: b.minutes)
-                                steps = steps.filterIndexed { k, _ -> k != i + 1 }.map { if (it.id == st.id) merged else it }
-                            }
-                        }, enabled = i < steps.size - 1) { Icon(Icons.Filled.CallMerge, s.splitHint) }
-                        Spacer(Modifier.weight(1f))
-                        IconButton(onClick = { steps = steps.filter { it.id != st.id } }) { Icon(Icons.Filled.Delete, s.delete) }
-                    }
+                    RowMenu(listOf(
+                        Triple(s.moveUp, i > 0) { steps = steps.moved(i, i - 1) },
+                        Triple(s.moveDown, i < steps.size - 1) { steps = steps.moved(i, i + 1) },
+                        Triple(s.splitHint, i < steps.size - 1) {
+                            val b = steps[i + 1]
+                            val merged = st.copy(text = (st.text + " " + (if (b.title.isNotBlank()) b.title + ": " else "") + b.text).trim(),
+                                tempC = st.tempC ?: b.tempC, minutes = st.minutes ?: b.minutes)
+                            steps = steps.filterIndexed { k, _ -> k != i + 1 }.map { if (it.id == st.id) merged else it }
+                        },
+                        Triple(s.delete, true) { steps = steps.filter { it.id != st.id } },
+                    ))
                 }
             }
             OutlineButton(s.addStep, Icons.Filled.Add) { steps = steps + Step() }
 
             // notes
             Text(s.notes, style = MaterialTheme.typography.titleLarge)
-            OutlinedTextField(notes, { notes = it }, Modifier.fillMaxWidth(), minLines = 2)
+            CompactField(notes, { notes = it }, Modifier.fillMaxWidth(), s.noteHint, maxLines = 8)
 
             if (unassigned.isNotEmpty()) {
-                MCard(warn = true) {
-                    Text(s.unassigned, style = MaterialTheme.typography.titleSmall)
-                    unassigned.forEachIndexed { k, line ->
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(line, Modifier.weight(1f))
-                            TextButton(onClick = {
-                                ings = ings + RecipeParser.parseIngredient(line); unassigned = unassigned.filterIndexed { j, _ -> j != k }
-                            }) { Text("+ " + s.ingredient) }
-                            TextButton(onClick = {
-                                steps = steps + Step(text = line); unassigned = unassigned.filterIndexed { j, _ -> j != k }
-                            }) { Text("+ " + s.step(steps.size + 1)) }
-                            IconButton(onClick = { unassigned = unassigned.filterIndexed { j, _ -> j != k } }) { Icon(Icons.Filled.Delete, s.remove) }
+                MCard(warn = true, padding = 10.dp) {
+                    Row(Modifier.fillMaxWidth().clickable { showUnassigned = !showUnassigned }, verticalAlignment = Alignment.CenterVertically) {
+                        Text(s.unassigned + " (${unassigned.size})", style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                        Icon(if (showUnassigned) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, null)
+                    }
+                    if (showUnassigned) unassigned.forEachIndexed { k, line ->
+                        Row(Modifier.fillMaxWidth().padding(top = 2.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(line, Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
+                            RowMenu(listOf(
+                                Triple("+ " + s.ingredient, true) { ings = ings + RecipeParser.parseIngredient(line); unassigned = unassigned.filterIndexed { j, _ -> j != k } },
+                                Triple("+ " + s.step(steps.size + 1), true) { steps = steps + Step(text = line); unassigned = unassigned.filterIndexed { j, _ -> j != k } },
+                                Triple(s.remove, true) { unassigned = unassigned.filterIndexed { j, _ -> j != k } },
+                            ))
                         }
                     }
                 }
@@ -253,29 +262,39 @@ private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, pct: Doubl
     val p = pal
     val amb = Units.get(ing.unit).ambiguous
     val warn = ing.uncertain || amb || ing.amount == null
-    MCard(Modifier.fillMaxWidth(), warn = warn, padding = 10.dp) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), singleLine = false, maxLines = 3,
-                label = { Text(s.ingredientName) }, textStyle = MaterialTheme.typography.bodyLarge)
-            AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.width(112.dp))
-            UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(104.dp))
-            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.width(64.dp), maxLines = 1,
-                style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.End)
+    Column(
+        Modifier.fillMaxWidth().background(if (warn) p.warnBg else p.surface)
+            .let { if (warn) it.border(2.dp, p.warnBorder) else it }
+            .padding(horizontal = 8.dp, vertical = 5.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            CompactField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), s.ingredientName)
+            AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.width(100.dp))
+            UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(92.dp))
+            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.width(58.dp), maxLines = 1,
+                style = MaterialTheme.typography.titleSmall, textAlign = androidx.compose.ui.text.style.TextAlign.End)
+            RowMenu(listOf(
+                Triple(s.moveUp, index > 0) { onMove(-1) },
+                Triple(s.moveDown, index < count - 1) { onMove(1) },
+                Triple(s.delete, true, onDelete),
+            ))
         }
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            when {
-                amb -> CheckBadge(s.ambiguousUnit)
-                ing.amount == null -> CheckBadge(s.noQuantity)
-                ing.uncertain -> CheckBadge()
+        if (warn || ing.note.isNotBlank()) {
+            Row(Modifier.padding(top = 3.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                when {
+                    amb -> CheckBadge(s.ambiguousUnit)
+                    ing.amount == null -> CheckBadge(s.noQuantity)
+                    ing.uncertain -> CheckBadge()
+                }
+                val orig = ing.original?.text?.takeIf { it.isNotBlank() && it != ing.name }
+                if (orig != null) Text("“$orig”", color = p.muted, style = MaterialTheme.typography.bodySmall, maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
+                if (ing.uncertain && !amb && ing.amount != null) Text(s.confirmed, color = p.primary, fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.labelMedium, modifier = Modifier.clickable { onChange(ing.copy(uncertain = false)) }.padding(6.dp))
             }
-            ing.original?.text?.takeIf { it.isNotBlank() }?.let { Text("“$it”", color = p.muted, style = MaterialTheme.typography.bodySmall) }
-            if (ing.note.isNotBlank()) Text(ing.note, color = p.muted, style = MaterialTheme.typography.bodySmall)
-            if (ing.uncertain && !amb && ing.amount != null) TextButton(onClick = { onChange(ing.copy(uncertain = false)) }) { Text(s.confirmed) }
-            IconButton(onClick = { onMove(-1) }, enabled = index > 0) { Icon(Icons.Filled.KeyboardArrowUp, s.moveUp) }
-            IconButton(onClick = { onMove(1) }, enabled = index < count - 1) { Icon(Icons.Filled.KeyboardArrowDown, s.moveDown) }
-            IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, s.delete) }
         }
     }
+    if (index < count - 1) androidx.compose.material3.HorizontalDivider(color = p.border)
 }
 
 private fun <T> List<T>.moved(from: Int, to: Int): List<T> {
