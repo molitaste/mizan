@@ -310,6 +310,53 @@ fun NumberField(
     }
 }
 
+/**
+ * Compact amount box for ingredient tables: number centred, sized to fit, no label padding.
+ * Keeps the text being typed (so "1." or "1 1/2" isn't reformatted mid-entry).
+ */
+@Composable
+fun AmountBox(
+    value: Double?,
+    onValue: (Double?) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    error: Boolean = false,
+) {
+    val p = pal
+    var text by remember { mutableStateOf(Num.fmt(value)) }
+    var focused by remember { mutableStateOf(false) }
+    LaunchedEffect(value, focused) { if (!focused) text = Num.fmt(value) }
+    val borderColor = when {
+        error -> p.warnBorder
+        focused -> p.primary
+        else -> p.border
+    }
+    androidx.compose.runtime.CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+        androidx.compose.foundation.text.BasicTextField(
+            value = text,
+            onValueChange = { t -> text = t; onValue(Num.parse(t)) },
+            enabled = enabled,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            textStyle = MaterialTheme.typography.titleMedium.copy(
+                textAlign = TextAlign.Center, color = if (enabled) p.text else p.muted,
+                fontFeatureSettings = "tnum",
+            ),
+            cursorBrush = androidx.compose.ui.graphics.SolidColor(p.primary),
+            modifier = modifier.heightIn(min = 46.dp).onFocusChanged { focused = it.isFocused },
+            decorationBox = { inner ->
+                Box(
+                    Modifier.fillMaxWidth().heightIn(min = 46.dp).clip(RoundedCornerShape(10.dp))
+                        .background(p.surface)
+                        .border(if (focused || error || p.eink) 2.dp else 1.dp, borderColor, RoundedCornerShape(10.dp))
+                        .padding(horizontal = 4.dp),
+                    contentAlignment = Alignment.Center,
+                ) { inner() }
+            },
+        )
+    }
+}
+
 @Composable
 fun UnitPicker(code: String, onPick: (String) -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
     val s = str
@@ -317,12 +364,12 @@ fun UnitPicker(code: String, onPick: (String) -> Unit, modifier: Modifier = Modi
     val p = pal
     Box(modifier) {
         Row(
-            Modifier.heightIn(min = 52.dp).clip(RoundedCornerShape(10.dp))
+            Modifier.fillMaxWidth().heightIn(min = 46.dp).clip(RoundedCornerShape(10.dp))
                 .border(if (p.eink) 2.dp else 1.dp, if (Units.get(code).ambiguous) p.warnBorder else p.border, RoundedCornerShape(10.dp))
                 .clickable(enabled = enabled) { open = true }.padding(horizontal = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(Units.label(code, s.ar), maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
+            Text(Units.label(code, s.ar), maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
             if (enabled) Icon(Icons.Filled.ArrowDropDown, null)
         }
         DropdownMenu(expanded = open, onDismissRequest = { open = false }) {

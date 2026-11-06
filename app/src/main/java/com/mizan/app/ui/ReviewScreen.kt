@@ -252,11 +252,11 @@ private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, pct: Doubl
     val warn = ing.uncertain || amb || ing.amount == null
     MCard(Modifier.fillMaxWidth(), warn = warn, padding = 10.dp) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1.6f), singleLine = true,
-                label = { Text(s.ingredientName) })
-            NumberField(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.weight(0.9f), label = s.amount)
-            UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.weight(0.9f))
-            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.weight(0.5f),
+            OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), singleLine = false, maxLines = 3,
+                label = { Text(s.ingredientName) }, textStyle = MaterialTheme.typography.bodyLarge)
+            AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.width(112.dp))
+            UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(104.dp))
+            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.width(64.dp), maxLines = 1,
                 style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.End)
         }
         Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {

@@ -370,10 +370,11 @@ private fun IngredientTable(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             val hc = if (p.eink) Color.Black else Color.White
-            Text(s.ingredient, color = hc, fontWeight = FontWeight.Bold, modifier = Modifier.weight(if (wide) 2.2f else 1.6f))
-            Text(s.amount, color = hc, fontWeight = FontWeight.Bold, modifier = Modifier.weight(if (wide) 1.8f else 1.6f), textAlign = TextAlign.Center)
+            val cw = colWidths(wide, edit)
+            Text(s.ingredient, color = hc, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            Text(s.amount, color = hc, fontWeight = FontWeight.Bold, modifier = Modifier.width(cw.amount + cw.unit + 6.dp), textAlign = TextAlign.Center)
             Text(if (basisName != null) "%" else s.percentage + " (%)", color = hc, fontWeight = FontWeight.Bold,
-                modifier = Modifier.weight(1f), textAlign = TextAlign.End)
+                modifier = Modifier.width(cw.pct), textAlign = TextAlign.End)
         }
         if (c.ingredients.isEmpty() && !edit) Text("—", Modifier.padding(16.dp))
         c.ingredients.forEachIndexed { idx, ing ->
@@ -405,12 +406,13 @@ private fun IngredientTable(
                 .let { if (p.eink) it.border(2.dp, Color.Black) else it }.padding(horizontal = 14.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(s.totalBatch, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(if (wide) 2.2f else 1.6f))
+            val cw = colWidths(wide, edit)
+            Text(s.totalBatch, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
             val t = totals.totalG
             Text(if (t != null) "${Num.fmt(t * (if (edit) 1.0 else factor))} g" else "—", fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(if (wide) 1.8f else 1.6f), textAlign = TextAlign.Center)
+                style = MaterialTheme.typography.titleLarge, modifier = Modifier.width(cw.amount + cw.unit + 6.dp), textAlign = TextAlign.Center, maxLines = 1)
             Text(if (t != null && c.pctBasis == PctBasis.TOTAL) "100%" else "", fontWeight = FontWeight.Bold,
-                modifier = Modifier.weight(1f), textAlign = TextAlign.End)
+                modifier = Modifier.width(cw.pct), textAlign = TextAlign.End)
         }
         // basis label / missing weights
         val basisLabel = if (basisName != null) s.pctOf(basisName) else s.pctOfTotal
@@ -452,29 +454,30 @@ private fun IngredientRow(
             .let { if (warn) it.border(2.dp, p.warnBorder) else it }
             .padding(horizontal = 12.dp, vertical = 8.dp),
     ) {
+        val cw = colWidths(wide, edit)
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.weight(if (wide) 2.2f else 1.6f)) {
+            Box(Modifier.weight(1f)) {
                 if (edit) {
-                    OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, singleLine = true,
+                    OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, singleLine = false, maxLines = 3,
                         placeholder = { Text(s.ingredientName) }, modifier = Modifier.fillMaxWidth().padding(end = 6.dp),
-                        shape = RoundedCornerShape(10.dp))
+                        textStyle = MaterialTheme.typography.bodyLarge, shape = RoundedCornerShape(10.dp))
                 } else Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Filled.Edit, null, tint = p.muted, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
-                    Text(ing.name.ifBlank { "—" }, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                    Text(ing.name.ifBlank { "—" }, style = MaterialTheme.typography.titleMedium, maxLines = 4, modifier = Modifier.padding(end = 6.dp))
                 }
             }
-            Row(Modifier.weight(if (wide) 1.8f else 1.6f), verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 if (edit) {
-                    NumberField(ing.amount, { v ->
+                    AmountBox(ing.amount, { v ->
                         rowError = if (v == null || v < 0) s.invalidNumber else null
                         if (v != null && v >= 0) onChange(ing.copy(amount = v))
-                    }, Modifier.weight(1f), error = rowError != null)
+                    }, Modifier.width(cw.amount), error = rowError != null)
                     Spacer(Modifier.width(6.dp))
-                    UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.weight(1f))
+                    UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(cw.unit))
                 } else {
                     val scaled = Scaling.scaled(ing.amount, factor)
-                    NumberField(scaled, { v ->
+                    AmountBox(scaled, { v ->
                         val f = Scaling.factorFromRow(ing.amount, v)
                         rowError = when {
                             ing.amount == null || ing.amount <= 0 -> s.baselineZero
@@ -482,14 +485,14 @@ private fun IngredientRow(
                             else -> null
                         }
                         if (f != null) onFactor(f)
-                    }, Modifier.weight(1f), enabled = ing.amount != null && ing.amount > 0, error = rowError != null)
+                    }, Modifier.width(cw.amount), enabled = ing.amount != null && ing.amount > 0, error = rowError != null)
                     Spacer(Modifier.width(6.dp))
-                    Text(Units.label(ing.unit, s.ar), modifier = Modifier.width(if (wide) 72.dp else 52.dp), maxLines = 2,
+                    Text(Units.label(ing.unit, s.ar), modifier = Modifier.width(cw.unit), maxLines = 2,
                         style = MaterialTheme.typography.bodyMedium)
                 }
             }
-            Text(pct?.let { Num.pct(it) + "%" } ?: "—", modifier = Modifier.weight(1f), textAlign = TextAlign.End,
-                style = MaterialTheme.typography.titleMedium)
+            Text(pct?.let { Num.pct(it) + "%" } ?: "—", modifier = Modifier.width(cw.pct), textAlign = TextAlign.End,
+                style = MaterialTheme.typography.titleMedium, maxLines = 1)
         }
         rowError?.let { Text(it, color = p.warnBorder, style = MaterialTheme.typography.bodySmall) }
         // badges / originals
@@ -571,3 +574,12 @@ fun CategoryField(value: String, onChange: (String) -> Unit, modifier: Modifier 
         }
     }
 }
+
+/** Fixed column widths so numbers always fit; the ingredient name takes the rest of the row. */
+private data class ColW(val amount: androidx.compose.ui.unit.Dp, val unit: androidx.compose.ui.unit.Dp, val pct: androidx.compose.ui.unit.Dp)
+
+private fun colWidths(wide: Boolean, edit: Boolean) = ColW(
+    amount = if (wide) 132.dp else 104.dp,
+    unit = if (edit) (if (wide) 124.dp else 96.dp) else (if (wide) 72.dp else 54.dp),
+    pct = if (wide) 84.dp else 64.dp,
+)
