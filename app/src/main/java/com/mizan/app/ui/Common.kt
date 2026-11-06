@@ -149,10 +149,10 @@ fun AccentButton(text: String, icon: ImageVector?, modifier: Modifier = Modifier
         colors = ButtonDefaults.buttonColors(containerColor = p.accent, contentColor = p.onAccent,
             disabledContainerColor = if (p.eink) Color.White else p.border, disabledContentColor = p.muted),
         border = if (p.eink && !enabled) BorderStroke(1.dp, Color.Black) else null,
-        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp),
     ) {
-        if (icon != null) { Icon(icon, null, Modifier.size(22.dp)); Spacer(Modifier.width(8.dp)) }
-        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        if (icon != null) { Icon(icon, null, Modifier.size(20.dp)); Spacer(Modifier.width(6.dp)) }
+        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis)
     }
 }
 
@@ -164,10 +164,10 @@ fun PrimaryButton(text: String, icon: ImageVector?, modifier: Modifier = Modifie
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(containerColor = p.primary, contentColor = p.onPrimary,
             disabledContainerColor = if (p.eink) Color.White else p.border, disabledContentColor = p.muted),
-        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp),
     ) {
-        if (icon != null) { Icon(icon, null, Modifier.size(22.dp)); Spacer(Modifier.width(8.dp)) }
-        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        if (icon != null) { Icon(icon, null, Modifier.size(20.dp)); Spacer(Modifier.width(6.dp)) }
+        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis)
     }
 }
 
@@ -179,10 +179,10 @@ fun OutlineButton(text: String, icon: ImageVector?, modifier: Modifier = Modifie
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(if (p.eink) 2.dp else 1.5.dp, if (p.eink) Color.Black else p.primary),
         colors = ButtonDefaults.outlinedButtonColors(containerColor = p.surface, contentColor = p.primary),
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     ) {
-        if (icon != null) { Icon(icon, null, Modifier.size(22.dp)); Spacer(Modifier.width(8.dp)) }
-        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        if (icon != null) { Icon(icon, null, Modifier.size(20.dp)); Spacer(Modifier.width(6.dp)) }
+        Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis)
     }
 }
 
@@ -239,7 +239,8 @@ fun <T> Segmented(options: List<Pair<T, String>>, selected: T, onSelect: (T) -> 
                 Text(
                     (if (on && p.eink) "● " else "") + label,
                     color = if (on) p.onPrimary else p.text, fontWeight = if (on) FontWeight.Bold else FontWeight.Medium,
-                    textAlign = TextAlign.Center, maxLines = 2, style = MaterialTheme.typography.labelMedium,
+                    textAlign = TextAlign.Center, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.labelMedium,
                 )
             }
         }

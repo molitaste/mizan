@@ -101,6 +101,9 @@ fun SettingsScreen(onBack: () -> Unit) {
             SettingRow(s.voiceLanguage) {
                 Segmented(listOf("" to s.speechFollowUi, "ar-SA" to "العربية", "en-US" to "English"), st.voiceLang, { v -> Settings.update { it.copy(voiceLang = v) } })
             }
+            SettingRow(s.textSize) {
+                Segmented(listOf(0.85f to s.small, 1f to s.normal, 1.15f to s.large), st.textScale, { v -> Settings.update { it.copy(textScale = v) } })
+            }
             SettingRow(s.displayMode) {
                 Segmented(listOf(false to s.color, true to s.eink), st.eink, { e -> Settings.update { it.copy(eink = e) } })
             }

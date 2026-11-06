@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
                     navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
                 )
             }
-            MizanTheme(arabic = s.arabic, eink = s.eink) { AppNav() }
+            MizanTheme(arabic = s.arabic, eink = s.eink, textScale = s.textScale) { AppNav() }
         }
     }
 

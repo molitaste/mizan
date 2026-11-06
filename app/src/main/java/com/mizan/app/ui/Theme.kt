@@ -89,7 +89,7 @@ private object NoRipple : RippleTheme {
 }
 
 @Composable
-fun MizanTheme(arabic: Boolean, eink: Boolean, content: @Composable () -> Unit) {
+fun MizanTheme(arabic: Boolean, eink: Boolean, textScale: Float = 1f, content: @Composable () -> Unit) {
     val p = if (eink) EinkPalette else ColorPalette
     val scheme = lightColorScheme(
         primary = p.primary,
@@ -128,23 +128,26 @@ fun MizanTheme(arabic: Boolean, eink: Boolean, content: @Composable () -> Unit) 
     val base = Typography()
     val w = if (eink) FontWeight.Medium else FontWeight.Normal
     val typo = Typography(
-        headlineMedium = base.headlineMedium.copy(fontWeight = FontWeight.Bold, fontSize = 28.sp),
-        headlineSmall = base.headlineSmall.copy(fontWeight = FontWeight.Bold, fontSize = 24.sp),
-        titleLarge = base.titleLarge.copy(fontWeight = FontWeight.Bold, fontSize = 22.sp),
-        titleMedium = base.titleMedium.copy(fontWeight = FontWeight.SemiBold, fontSize = 18.sp),
-        titleSmall = base.titleSmall.copy(fontWeight = FontWeight.SemiBold, fontSize = 16.sp),
-        bodyLarge = base.bodyLarge.copy(fontSize = 17.sp, fontWeight = w),
-        bodyMedium = base.bodyMedium.copy(fontSize = 15.sp, fontWeight = w),
-        bodySmall = base.bodySmall.copy(fontSize = 13.sp, fontWeight = w),
-        labelLarge = base.labelLarge.copy(fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
-        labelMedium = base.labelMedium.copy(fontSize = 14.sp, fontWeight = FontWeight.Medium),
+        headlineMedium = base.headlineMedium.copy(fontWeight = FontWeight.Bold, fontSize = 22.sp, lineHeight = 28.sp),
+        headlineSmall = base.headlineSmall.copy(fontWeight = FontWeight.Bold, fontSize = 19.sp, lineHeight = 25.sp),
+        titleLarge = base.titleLarge.copy(fontWeight = FontWeight.Bold, fontSize = 17.sp, lineHeight = 23.sp),
+        titleMedium = base.titleMedium.copy(fontWeight = FontWeight.SemiBold, fontSize = 15.sp, lineHeight = 21.sp),
+        titleSmall = base.titleSmall.copy(fontWeight = FontWeight.SemiBold, fontSize = 14.sp, lineHeight = 19.sp),
+        bodyLarge = base.bodyLarge.copy(fontSize = 15.sp, lineHeight = 21.sp, fontWeight = w),
+        bodyMedium = base.bodyMedium.copy(fontSize = 14.sp, lineHeight = 19.sp, fontWeight = w),
+        bodySmall = base.bodySmall.copy(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = w),
+        labelLarge = base.labelLarge.copy(fontSize = 14.sp, lineHeight = 18.sp, fontWeight = FontWeight.SemiBold),
+        labelMedium = base.labelMedium.copy(fontSize = 13.sp, lineHeight = 17.sp, fontWeight = FontWeight.Medium),
     )
     MaterialTheme(colorScheme = scheme, typography = typo) {
         val locals = mutableListOf<ProvidedValue<*>>(
             LocalPalette provides p,
             LocalStr provides Str(arabic),
             LocalLayoutDirection provides if (arabic) LayoutDirection.Rtl else LayoutDirection.Ltr,
-            LocalTextStyle provides TextStyle(color = p.text, fontSize = 16.sp),
+            LocalTextStyle provides TextStyle(color = p.text, fontSize = 14.sp),
+            // app-controlled text size (ignores a very large system font setting)
+            androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(
+                androidx.compose.ui.platform.LocalDensity.current.density, textScale),
         )
         if (eink) {
             locals += LocalRippleTheme provides NoRipple

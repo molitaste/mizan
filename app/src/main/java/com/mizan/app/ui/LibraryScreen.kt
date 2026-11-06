@@ -238,7 +238,7 @@ private fun RailItem(icon: ImageVector, label: String, selected: Boolean = false
     ) {
         Icon(icon, null, tint = fg, modifier = Modifier.size(26.dp))
         Spacer(Modifier.width(12.dp))
-        Text(label, color = fg, fontWeight = FontWeight.SemiBold, maxLines = 2)
+        Text(label, color = fg, fontWeight = FontWeight.SemiBold, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.labelLarge)
     }
 }
 
@@ -252,7 +252,7 @@ fun Chip(label: String, selected: Boolean, onClick: () -> Unit) {
             .clickable(onClick = onClick).padding(horizontal = 16.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(label, color = if (selected) (if (p.eink) Color.White else p.accent) else p.text, fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium)
+        Text(label, color = if (selected) (if (p.eink) Color.White else p.accent) else p.text, fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium, maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelMedium)
     }
 }
 

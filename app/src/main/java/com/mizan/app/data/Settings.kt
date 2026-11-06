@@ -16,6 +16,7 @@ data class AppSettings(
     val showOriginals: Boolean = true,
     val voiceLang: String = "",             // "" = follow UI language
     val forcePdfOcr: Boolean = false,
+    val textScale: Float = 1f,           // 0.85 small, 1 normal, 1.15 large
 )
 
 object Settings {
@@ -45,6 +46,7 @@ object Settings {
             showOriginals = p.getBoolean("showOriginals", true),
             voiceLang = p.getString("voiceLang", "") ?: "",
             forcePdfOcr = p.getBoolean("forcePdfOcr", false),
+            textScale = p.getFloat("textScale", 1f),
         )
     }
 
@@ -64,6 +66,7 @@ object Settings {
             .putBoolean("showOriginals", n.showOriginals)
             .putString("voiceLang", n.voiceLang)
             .putBoolean("forcePdfOcr", n.forcePdfOcr)
+            .putFloat("textScale", n.textScale)
             .apply()
     }
 

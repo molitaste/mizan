@@ -276,7 +276,7 @@ private fun ModeTabs(edit: Boolean, onEdit: (Boolean) -> Unit) {
                 Icon(pair.first, null, tint = if (on) Color.White else p.text)
                 Spacer(Modifier.width(8.dp))
                 Text((if (on && p.eink) "● " else "") + pair.second, color = if (on) Color.White else p.text,
-                    fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
+                    fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis)
             }
         }
     }
