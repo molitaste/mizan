@@ -401,7 +401,7 @@ private fun IngredientTable(
         if (edit) {
             Box(Modifier.padding(12.dp)) {
                 OutlineButton(s.addIngredient, Icons.Filled.Add, Modifier.fillMaxWidth()) {
-                    onUpdate { it.copy(ingredients = it.ingredients + Ingredient(unit = it.ingredients.lastOrNull()?.unit ?: "g")) }
+                    onUpdate { it.copy(ingredients = it.ingredients + Ingredient(unit = "g")) }
                 }
             }
         }

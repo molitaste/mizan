@@ -108,7 +108,7 @@ Use Sicilian pistachio.
     check("cream", d.ingredients[1].let { it.name=="cream" && it.amount==300.0 && it.unit=="g" }, d.ingredients[1])
     check("sugar cup ambiguous", d.ingredients[2].let { it.amount==1.5 && it.unit=="cup" && it.uncertain }, d.ingredients[2])
     check("paste", d.ingredients[3].let { it.name=="Pistachio paste" && it.amount==100.0 }, d.ingredients[3])
-    check("eggs", d.ingredients[4].let { it.amount==2.0 && it.unit=="pc" && it.name=="eggs" }, d.ingredients[4])
+    check("no unit -> g", d.ingredients[4].let { it.amount==2.0 && it.unit=="g" && it.name=="eggs" }, d.ingredients[4])
     check("salt no qty flagged", d.ingredients[5].let { it.amount==null && it.uncertain }, d.ingredients[5])
     check("3 steps", d.steps.size==3, d.steps.map{it.text})
     check("step1 title", d.steps[0].title=="Mix the ingredients", d.steps[0])

@@ -88,7 +88,7 @@ object RecipeParser {
             note = (note + " oz = weight ounce (fl oz for volume)").trim()
         }
         if (Units.get(unit).ambiguous) uncertain = true
-        if (unit.isEmpty() && amount != null) unit = "pc" // "3 eggs" = a count
+        if (unit.isEmpty() && amount != null) unit = "g" // no unit written → grams (user default)
         if (name.isEmpty()) { name = line; uncertain = true }
         return Ingredient(
             name = name,
