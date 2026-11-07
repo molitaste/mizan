@@ -121,6 +121,7 @@ fun EditorScreen(
         }
         BoxWithConstraints(Modifier.weight(1f).imePadding()) {
             val wide = maxWidth >= 720.dp
+            val narrow = maxWidth < 560.dp
             ContentColumn(Modifier.fillMaxSize()) {
                 // ---------------- recipe header
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -199,7 +200,7 @@ fun EditorScreen(
                 // ---------------- ingredient table
                 IngredientTable(
                     c = c, edit = edit, factor = factor, pct = pct, totals = totals,
-                    showOriginals = settings.showOriginals, wide = wide,
+                    showOriginals = settings.showOriginals, wide = wide, narrow = narrow,
                     onFactor = ::setFactor, onUpdate = ::update,
                 )
 
@@ -357,6 +358,7 @@ private fun IngredientTable(
     totals: Scaling.Totals,
     showOriginals: Boolean,
     wide: Boolean,
+    narrow: Boolean = false,
     onFactor: (Double?) -> Unit,
     onUpdate: ((RecipeContent) -> RecipeContent) -> Unit,
 ) {
@@ -383,7 +385,7 @@ private fun IngredientTable(
         c.ingredients.forEachIndexed { idx, ing ->
             IngredientRow(
                 ing = ing, index = idx, count = c.ingredients.size, edit = edit, factor = factor, pct = pct[ing.id],
-                showOriginals = showOriginals, wide = wide, onFactor = onFactor,
+                showOriginals = showOriginals, wide = wide, narrow = narrow, onFactor = onFactor,
                 onChange = { ni -> onUpdate { cc -> cc.copy(ingredients = cc.ingredients.map { if (it.id == ing.id) ni else it }) } },
                 onMove = { d ->
                     onUpdate { cc ->
@@ -440,6 +442,7 @@ private fun IngredientRow(
     pct: Double?,
     showOriginals: Boolean,
     wide: Boolean,
+    narrow: Boolean,
     onFactor: (Double?) -> Unit,
     onChange: (Ingredient) -> Unit,
     onMove: (Int) -> Unit,
@@ -458,8 +461,8 @@ private fun IngredientRow(
             .padding(horizontal = 12.dp, vertical = 8.dp),
     ) {
         val cw = colWidths(wide, edit)
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.weight(1f)) {
+        val nameCell: @Composable (Modifier) -> Unit = { m ->
+            Box(m) {
                 if (edit) {
                     OutlinedTextField(ing.name, { onChange(ing.copy(name = it)) }, singleLine = false, maxLines = 3,
                         placeholder = { Text(s.ingredientName) }, modifier = Modifier.fillMaxWidth().padding(end = 6.dp),
@@ -470,6 +473,8 @@ private fun IngredientRow(
                     Text(ing.name.ifBlank { "—" }, style = MaterialTheme.typography.titleMedium, maxLines = 4, modifier = Modifier.padding(end = 6.dp))
                 }
             }
+        }
+        val amountCell: @Composable () -> Unit = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (edit) {
                     AmountBox(ing.amount, { v ->
@@ -494,8 +499,19 @@ private fun IngredientRow(
                         style = MaterialTheme.typography.bodyMedium)
                 }
             }
+        }
+        val pctCell: @Composable () -> Unit = {
             Text(pct?.let { Num.pct(it) + "%" } ?: "—", modifier = Modifier.width(cw.pct), textAlign = TextAlign.End,
                 style = MaterialTheme.typography.titleMedium, maxLines = 1)
+        }
+        if (narrow) {
+            // phones: name on its own full-width line, numbers underneath
+            nameCell(Modifier.fillMaxWidth())
+            Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                amountCell(); Spacer(Modifier.weight(1f)); pctCell()
+            }
+        } else Row(verticalAlignment = Alignment.CenterVertically) {
+            nameCell(Modifier.weight(1f)); amountCell(); pctCell()
         }
         rowError?.let { Text(it, color = p.warnBorder, style = MaterialTheme.typography.bodySmall) }
         // badges / originals

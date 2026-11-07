@@ -267,17 +267,39 @@ private fun ReviewIngredient(ing: Ingredient, index: Int, count: Int, pct: Doubl
             .let { if (warn) it.border(2.dp, p.warnBorder) else it }
             .padding(horizontal = 8.dp, vertical = 5.dp),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            CompactField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), s.ingredientName)
-            AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.width(100.dp))
-            UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(92.dp))
-            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.width(58.dp), maxLines = 1,
-                style = MaterialTheme.typography.titleSmall, textAlign = androidx.compose.ui.text.style.TextAlign.End)
+        val menu: @Composable () -> Unit = {
             RowMenu(listOf(
                 Triple(s.moveUp, index > 0) { onMove(-1) },
                 Triple(s.moveDown, index < count - 1) { onMove(1) },
                 Triple(s.delete, true, onDelete),
             ))
+        }
+        val pctText: @Composable () -> Unit = {
+            Text(pct?.let { com.mizan.app.core.Num.pct(it) + "%" } ?: "—", Modifier.width(58.dp), maxLines = 1,
+                style = MaterialTheme.typography.titleSmall, textAlign = androidx.compose.ui.text.style.TextAlign.End)
+        }
+        androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxWidth()) {
+            if (maxWidth < 520.dp) {
+                // phones: name gets the full width, numbers on the line below
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CompactField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), s.ingredientName)
+                        menu()
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.weight(1f))
+                        UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.weight(1f))
+                        pctText()
+                        Spacer(Modifier.width(40.dp))
+                    }
+                }
+            } else Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                CompactField(ing.name, { onChange(ing.copy(name = it)) }, Modifier.weight(1f), s.ingredientName)
+                AmountBox(ing.amount, { v -> onChange(ing.copy(amount = v?.takeIf { it >= 0 })) }, Modifier.width(100.dp))
+                UnitPicker(ing.unit, { onChange(ing.copy(unit = it)) }, Modifier.width(92.dp))
+                pctText()
+                menu()
+            }
         }
         if (warn || ing.note.isNotBlank()) {
             Row(Modifier.padding(top = 3.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
