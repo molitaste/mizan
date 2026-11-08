@@ -7,6 +7,7 @@
 <meta name="description" content="Moli Taste 茉莉品味 — Neapolitan pizza, Moli Sub sandwiches, burgers, salads, daily fresh gelato and coffee. Dine-in, pickup and delivery. Closed on Sundays.">
 <link rel="preload" as="image" href="img/banners/b0new.webp" imagesrcset="img/banners/b0new-m.webp 900w, img/banners/b0new.webp 1600w" imagesizes="100vw">
 <link rel="stylesheet" href="style.css">
+<script src="content.php" defer></script>
 <script src="site.js" defer></script>
 </head>
 <body>
@@ -27,23 +28,23 @@
   <div class="dots" id="dots"></div>
 </div>
 
-<section class="ads"><div class="wrap ads-grid">
+<section class="ads"><div class="wrap ads-grid" id="ads">
   <a class="ad" href="menu.html#sandwich"><img loading="lazy" src="img/menu/napo-grilled-beef.webp" alt="">
-    <div class="ad-in"><span class="ad-badge" data-zh="新品" data-en="NEW"></span>
-      <h3 data-zh="那不勒斯三明治" data-en="Napolitano Sandwich"></h3><p data-zh="用披萨面团现烤的三明治" data-en="Baked from our pizza dough"></p>
-      <div class="ad-foot"><b data-zh="¥45 起" data-en="from ¥45"></b><span data-zh="查看 →" data-en="See more →"></span></div></div></a>
+    <div class="ad-in"><span class="ad-badge" data-k="new" data-zh="新品" data-en="NEW"></span>
+      <h3 data-k="napolitano_sandwich" data-zh="那不勒斯三明治" data-en="Napolitano Sandwich"></h3><p data-k="baked_from_our_pizza_dough" data-zh="用披萨面团现烤的三明治" data-en="Baked from our pizza dough"></p>
+      <div class="ad-foot"><b data-k="from_45" data-zh="¥45 起" data-en="from ¥45"></b><span data-k="see_more" data-zh="查看 →" data-en="See more →"></span></div></div></a>
   <a class="ad" href="menu.html#pizza"><img loading="lazy" src="img/menu/pizza-zatar-cheese.webp" alt="">
-    <div class="ad-in"><span class="ad-badge" data-zh="招牌" data-en="SIGNATURE"></span>
-      <h3 data-zh="那不勒斯披萨" data-en="Neapolitan Pizza"></h3><p data-zh="11 种口味，现点现烤" data-en="11 flavours, baked to order"></p>
-      <div class="ad-foot"><b data-zh="¥58 起" data-en="from ¥58"></b><span data-zh="查看 →" data-en="See more →"></span></div></div></a>
+    <div class="ad-in"><span class="ad-badge" data-k="signature" data-zh="招牌" data-en="SIGNATURE"></span>
+      <h3 data-k="neapolitan_pizza" data-zh="那不勒斯披萨" data-en="Neapolitan Pizza"></h3><p data-k="11_flavours_baked_to_order" data-zh="11 种口味，现点现烤" data-en="11 flavours, baked to order"></p>
+      <div class="ad-foot"><b data-k="from_58" data-zh="¥58 起" data-en="from ¥58"></b><span data-k="see_more" data-zh="查看 →" data-en="See more →"></span></div></div></a>
   <a class="ad" href="menu.html#burger"><img loading="lazy" src="img/menu/burger-beef.webp" alt="">
-    <div class="ad-in"><span class="ad-badge" data-zh="每日现烤" data-en="BAKED DAILY"></span>
-      <h3 data-zh="自家现烤面包" data-en="Fresh-Baked Bread"></h3><p data-zh="汉堡面包和潜艇面包，自家烘烤" data-en="Our own burger buns & sub rolls"></p>
-      <div class="ad-foot"><b data-zh="汉堡 ¥38 起" data-en="Burgers from ¥38"></b><span data-zh="查看 →" data-en="See more →"></span></div></div></a>
+    <div class="ad-in"><span class="ad-badge" data-k="baked_daily" data-zh="每日现烤" data-en="BAKED DAILY"></span>
+      <h3 data-k="fresh_baked_bread" data-zh="自家现烤面包" data-en="Fresh-Baked Bread"></h3><p data-k="our_own_burger_buns_sub_roll" data-zh="汉堡面包和潜艇面包，自家烘烤" data-en="Our own burger buns & sub rolls"></p>
+      <div class="ad-foot"><b data-k="burgers_from_38" data-zh="汉堡 ¥38 起" data-en="Burgers from ¥38"></b><span data-k="see_more" data-zh="查看 →" data-en="See more →"></span></div></div></a>
   <a class="ad" href="menu.html#gelato"><img loading="lazy" src="img/menu/gelato-pistachio.webp" alt="">
-    <div class="ad-in"><span class="ad-badge" data-zh="每日新鲜" data-en="DAILY FRESH"></span>
-      <h3 data-zh="意式冰淇淋" data-en="Gelato"></h3><p data-zh="开心果 · 芒果 · 巧克力" data-en="Pistachio · Mango · Chocolate"></p>
-      <div class="ad-foot"><b data-zh="¥16 起" data-en="from ¥16"></b><span data-zh="查看 →" data-en="See more →"></span></div></div></a>
+    <div class="ad-in"><span class="ad-badge" data-k="daily_fresh" data-zh="每日新鲜" data-en="DAILY FRESH"></span>
+      <h3 data-k="gelato" data-zh="意式冰淇淋" data-en="Gelato"></h3><p data-k="pistachio_mango_chocolate" data-zh="开心果 · 芒果 · 巧克力" data-en="Pistachio · Mango · Chocolate"></p>
+      <div class="ad-foot"><b data-k="from_16" data-zh="¥16 起" data-en="from ¥16"></b><span data-k="see_more" data-zh="查看 →" data-en="See more →"></span></div></div></a>
 </div></section>
 
 <!-- intro -->
@@ -55,8 +56,8 @@
     <p data-zh="我们专注<b>正宗那不勒斯风味披萨</b>，同时提供现烤三明治、汉堡、新鲜沙拉、<b>每日新鲜的意式冰淇淋</b>与咖啡。欢迎<b>堂食</b>，也可<b>自取</b>或<b>配送</b>。"
        data-en="We specialise in <b>authentic Neapolitan-style pizza</b>, plus fresh-baked sandwiches, burgers, salads, <b>gelato made fresh every day</b> and coffee. Join us for <b>dine-in</b>, or order for <b>pickup</b> and <b>delivery</b>."></p>
     <div class="cta">
-      <a class="btn red" href="#order" data-zh="微信点餐 · 堂食 | 自取 | 配送" data-en="ORDER ON WECHAT · DINE-IN | PICKUP | DELIVERY"></a>
-      <a class="btn line" href="menu.html" data-zh="查看菜单" data-en="View Menu"></a>
+      <a class="btn red" href="#order" data-k="order_on_wechat_dine_in_pick" data-zh="微信点餐 · 堂食 | 自取 | 配送" data-en="ORDER ON WECHAT · DINE-IN | PICKUP | DELIVERY"></a>
+      <a class="btn line" href="menu.html" data-k="view_menu" data-zh="查看菜单" data-en="View Menu"></a>
     </div>
   </div>
 </div>
@@ -64,23 +65,23 @@
 <!-- discover -->
 <section class="s" id="about">
   <div class="wrap">
-    <div class="title"><div class="scr">Discover</div><h2 data-zh="新鲜风味" data-en="New Flavors"></h2><div class="div"></div></div>
+    <div class="title"><div class="scr">Discover</div><h2 data-k="new_flavors" data-zh="新鲜风味" data-en="New Flavors"></h2><div class="div"></div></div>
     <div class="cols">
       <p data-zh="披萨诞生于那不勒斯。我们坚持那不勒斯的做法：柔软有嚼劲的饼底、高温烤出的焦斑边缘、简单而优质的配料。从经典玛格丽特到扎塔、烟熏三文鱼和鲜烤大虾，每一款都现点现烤。"
          data-en="Pizza was born in Naples, and we make ours the Neapolitan way: a soft, chewy base, a blistered, leopard-spotted crust and a few great ingredients. From the classic Margherita to Zatar, smoked salmon and shrimp, every pizza is baked to order."></p>
       <p style="margin-top:14px" data-zh="除了披萨，还有用同样面团烤制的那不勒斯三明治、茉莉潜艇三明治、汉堡和沙拉。饭后来一杯咖啡，或一球每日新鲜的开心果、芒果、巧克力意式冰淇淋。"
          data-en="Beyond pizza, try our Napolitano sandwiches baked from the same dough, Moli Subs, burgers and salads. Finish with a coffee or a scoop of gelato — pistachio, mango or chocolate — made fresh every day."></p>
     </div>
-    <div class="center"><a class="btn tan" href="menu.html" data-zh="浏览完整菜单" data-en="Explore the Menu"></a></div>
+    <div class="center"><a class="btn tan" href="menu.html" data-k="explore_the_menu" data-zh="浏览完整菜单" data-en="Explore the Menu"></a></div>
   </div>
 </section>
 
 <!-- special dishes -->
 <section class="s pattern">
   <div class="wrap">
-    <div class="title"><div class="scr">Menu</div><h2 data-zh="招牌推荐" data-en="Special Dishes"></h2><div class="div"></div></div>
+    <div class="title"><div class="scr">Menu</div><h2 data-k="special_dishes" data-zh="招牌推荐" data-en="Special Dishes"></h2><div class="div"></div></div>
     <div class="dishes" id="specials"></div>
-    <div class="center"><a class="btn tan" href="menu.html" data-zh="查看完整菜单" data-en="View Full Menu"></a></div>
+    <div class="center"><a class="btn tan" href="menu.html" data-k="view_full_menu" data-zh="查看完整菜单" data-en="View Full Menu"></a></div>
   </div>
 </section>
 
@@ -89,28 +90,30 @@
   <div class="wrap">
     <div class="band">
       <div class="ic">🛎️</div>
-      <h2 data-zh="打开微信 · 搜索「茉莉品味」" data-en="Order on WeChat · “茉莉品味”"></h2>
-      <p data-zh="在小程序中点餐，选择堂食、自取或配送" data-en="Open the mini program and choose dine-in, pickup or delivery"></p>
-      <div class="modes"><span data-zh="堂食" data-en="DINE-IN"></span><span data-zh="自取" data-en="PICKUP"></span><span data-zh="配送" data-en="DELIVERY"></span></div>
+      <h2 data-k="order_on_wechat" data-zh="打开微信 · 搜索「茉莉品味」" data-en="Order on WeChat · “茉莉品味”"></h2>
+      <p data-k="open_the_mini_program_and_ch" data-zh="在小程序中点餐，选择堂食、自取或配送" data-en="Open the mini program and choose dine-in, pickup or delivery"></p>
+      <div class="modes"><span data-k="dine_in" data-zh="堂食" data-en="DINE-IN"></span><span data-k="pickup" data-zh="自取" data-en="PICKUP"></span><span data-k="delivery" data-zh="配送" data-en="DELIVERY"></span></div>
     </div>
 
+    <div id="features">
     <div class="feature">
       <div class="ph"><img loading="lazy" src="img/menu/pizza-zatar.webp" alt=""></div>
       <div class="box"><div class="inner"><div class="icn">🔥</div>
-        <h3 data-zh="那不勒斯风格" data-en="Napoletana Style"></h3><div class="title" style="margin:0"><div class="div"></div></div>
-        <p data-zh="高温烤制，饼边蓬松带焦斑，饼底柔软。11 种口味，从 ¥58 起。" data-en="Baked hot and fast for a puffy, blistered crust and a soft centre. 11 flavours, from ¥58."></p></div></div>
+        <h3 data-k="napoletana_style" data-zh="那不勒斯风格" data-en="Napoletana Style"></h3><div class="title" style="margin:0"><div class="div"></div></div>
+        <p data-k="baked_hot_and_fast_for_a_puf" data-zh="高温烤制，饼边蓬松带焦斑，饼底柔软。11 种口味，从 ¥58 起。" data-en="Baked hot and fast for a puffy, blistered crust and a soft centre. 11 flavours, from ¥58."></p></div></div>
     </div>
     <div class="feature rev">
       <div class="ph"><img loading="lazy" src="img/menu/gelato-pistachio.webp" alt=""></div>
       <div class="box"><div class="inner"><div class="icn">🍨</div>
-        <h3 data-zh="每日新鲜" data-en="Only Fresh, Every Day"></h3><div class="title" style="margin:0"><div class="div"></div></div>
-        <p data-zh="意式冰淇淋每天新鲜制作：开心果、芒果、巧克力，从 ¥16 起。" data-en="Our gelato is made fresh daily — pistachio, mango and chocolate, from ¥16."></p></div></div>
+        <h3 data-k="only_fresh_every_day" data-zh="每日新鲜" data-en="Only Fresh, Every Day"></h3><div class="title" style="margin:0"><div class="div"></div></div>
+        <p data-k="our_gelato_is_made_fresh_dai" data-zh="意式冰淇淋每天新鲜制作：开心果、芒果、巧克力，从 ¥16 起。" data-en="Our gelato is made fresh daily — pistachio, mango and chocolate, from ¥16."></p></div></div>
     </div>
     <div class="feature">
       <div class="ph"><img loading="lazy" src="img/menu/sub-cheese.webp" alt=""></div>
       <div class="box"><div class="inner"><div class="icn">🥖</div>
-        <h3 data-zh="自家现烤面包" data-en="Fresh-Baked Bread"></h3><div class="title" style="margin:0"><div class="div"></div></div>
-        <p data-zh="我们每天亲手烘烤面包——潜艇三明治面包和汉堡面包都是自家烤箱新鲜出炉，松软香浓。" data-en="We bake our own bread every day — our sub rolls and burger buns come fresh out of our oven, soft and full of flavour."></p></div></div>
+        <h3 data-k="fresh_baked_bread" data-zh="自家现烤面包" data-en="Fresh-Baked Bread"></h3><div class="title" style="margin:0"><div class="div"></div></div>
+        <p data-k="we_bake_our_own_bread_every" data-zh="我们每天亲手烘烤面包——潜艇三明治面包和汉堡面包都是自家烤箱新鲜出炉，松软香浓。" data-en="We bake our own bread every day — our sub rolls and burger buns come fresh out of our oven, soft and full of flavour."></p></div></div>
+    </div>
     </div>
   </div>
 </section>
@@ -118,23 +121,23 @@
 <!-- more dishes -->
 <section class="s pattern">
   <div class="wrap">
-    <div class="title"><div class="scr" data-zh="更多美味" data-en="From our menu"></div><h2 data-zh="更多菜品" data-en="More Dishes"></h2><div class="div"></div></div>
+    <div class="title"><div class="scr" data-k="from_our_menu" data-zh="更多美味" data-en="From our menu"></div><h2 data-k="more_dishes" data-zh="更多菜品" data-en="More Dishes"></h2><div class="div"></div></div>
     <div class="dishes" id="more"></div>
-    <div class="center"><a class="btn tan" href="menu.html" data-zh="查看完整菜单" data-en="View Full Menu"></a></div>
+    <div class="center"><a class="btn tan" href="menu.html" data-k="view_full_menu" data-zh="查看完整菜单" data-en="View Full Menu"></a></div>
   </div>
 </section>
 
 <!-- visit -->
 <section class="s" id="visit">
   <div class="wrap">
-    <div class="title"><div class="scr" data-zh="欢迎光临" data-en="Visit us"></div><h2 data-zh="营业时间" data-en="Opening Hours"></h2><div class="div"></div></div>
+    <div class="title"><div class="scr" data-k="visit_us" data-zh="欢迎光临" data-en="Visit us"></div><h2 data-k="opening_hours" data-zh="营业时间" data-en="Opening Hours"></h2><div class="div"></div></div>
     <div class="find">
-      <div class="hours"><div class="inner"><h3 data-zh="每周营业" data-en="Weekly hours"></h3><table id="hours"></table>
+      <div class="hours"><div class="inner"><h3 data-k="weekly_hours" data-zh="每周营业" data-en="Weekly hours"></h3><table id="hours"></table>
         <p style="margin-top:16px;color:var(--text)" id="addr"></p></div></div>
-      <div class="qr">
+      <div class="qr" id="qr">
         <!-- Replace this block with your mini-program QR code: <img src="img/qr.jpg" alt="QR" style="max-width:220px"> -->
-        <div><div style="font-size:40px">📱</div><b data-zh="微信扫码点餐" data-en="Scan to order on WeChat"></b><br>
-        <span data-zh="（在此放置小程序二维码 img/qr.jpg）" data-en="(place your mini-program QR code here: img/qr.jpg)"></span></div>
+        <div><div style="font-size:40px">📱</div><b data-k="scan_to_order_on_wechat" data-zh="微信扫码点餐" data-en="Scan to order on WeChat"></b><br>
+        <span data-k="place_your_mini_program_qr_c" data-zh="（在此放置小程序二维码 img/qr.jpg）" data-en="(place your mini-program QR code here: img/qr.jpg)"></span></div>
       </div>
     </div>
   </div>
@@ -144,22 +147,52 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 MoliInit("home");
-var L = MoliLang();
-function find(img) { for (var i = 0; i < MENU.length; i++) for (var j = 0; j < MENU[i].items.length; j++) if (MENU[i].items[j].img === img) return [MENU[i].items[j], MENU[i]]; }
-function render(id, list) {
-  document.getElementById(id).innerHTML = list.map(function (img) { var f = find(img); return MoliDish(f[0], MoliName(f[1])); }).join("");
+var M = window.MOLI, C = M.content;
+function catOf(it) { for (var i = 0; i < M.menu.length; i++) if (M.menu[i].items.indexOf(it) >= 0) return M.menu[i]; }
+function all() { var r = []; M.menu.forEach(function (c) { c.items.forEach(function (i) { r.push(i); }); }); return r; }
+function pick(tag, fallbackImgs) {
+  var list = all().filter(function (i) { return i.home === tag; });
+  if (!list.length) list = all().filter(function (i) { return fallbackImgs.some(function (f) { return i.img.indexOf(f) >= 0; }); });
+  return list.map(function (i) { return MoliDish(i, MoliName(catOf(i))); }).join("");
 }
-render("specials", ["pizza-zatar-cheese", "napo-grilled-beef", "gelato-pistachio"]);
-render("more", ["pizza-four-cheese", "pizza-smoked-salmon", "burger-beef", "sub-grilled-chicken", "special-bechamel", "salad-salmon"]);
-document.getElementById("hours").innerHTML = SITE.hours.map(function (d) {
-  return '<tr class="' + (d[2] === null ? "off" : "") + '"><td>' + T(d[0], d[1]) + "</td><td>" +
-    (d[2] === null ? T("休息", "Closed") : (d[2] || T("营业", "Open"))) + "</td></tr>";
+document.getElementById("specials").innerHTML = pick("special", ["pizza-zatar-cheese", "napo-grilled-beef", "gelato-pistachio"]);
+document.getElementById("more").innerHTML = pick("more", ["pizza-four-cheese", "pizza-smoked-salmon", "burger-beef", "sub-grilled-chicken", "special-bechamel", "salad-salmon"]);
+document.getElementById("hours").innerHTML = MoliHours().map(function (d) {
+  return '<tr class="' + (d.closed ? "off" : "") + '"><td>' + esc(d.name) + "</td><td>" + esc(d.text) + "</td></tr>";
 }).join("");
-document.getElementById("addr").innerHTML = (SITE.address_zh ? "📍 " + T(SITE.address_zh, SITE.address_en || SITE.address_zh) : "") + (SITE.phone ? "<br>☎ " + SITE.phone : "");
+var addr = L4(M.site.address);
+document.getElementById("addr").innerHTML = (addr ? "📍 " + esc(addr) : "") + (M.site.phone ? "<br>☎ " + esc(M.site.phone) : "");
+if (C) {
+  // banners
+  var bs = (C.banners || []).filter(function (b) { return b.show !== false && b.img; });
+  if (bs.length) document.getElementById("slides").innerHTML = bs.map(function (b, k) {
+    var set = (b.img_m ? esc(b.img_m) + " 900w, " : "") + esc(b.img) + " 1600w";
+    return '<a href="' + esc(b.link || "#") + '"><img ' + (k === 0 ? 'src="' + esc(b.img) + '" srcset="' + set + '"' : 'data-srcset="' + set + '"') +
+      ' sizes="100vw" alt="' + esc(b.alt || "") + '"></a>';
+  }).join("");
+  // highlight boxes
+  var ads = (C.ads || []).filter(function (a) { return a.show !== false; });
+  document.getElementById("ads").innerHTML = ads.map(function (a) {
+    return '<a class="ad" href="' + esc(a.link || "menu.html") + '"><img loading="lazy" src="' + esc(a.img) + '" alt="">' +
+      '<div class="ad-in"><span class="ad-badge" style="background:' + esc(a.color || "#d7263d") + '">' + esc(L4(a.badge)) + "</span>" +
+      "<h3>" + esc(L4(a.title)) + "</h3><p>" + esc(L4(a.sub)) + "</p>" +
+      '<div class="ad-foot"><b>' + esc(L4(a.price)) + "</b><span>" + esc(L4(a.cta)) + "</span></div></div></a>";
+  }).join("");
+  if (!ads.length) document.querySelector(".ads").style.display = "none";
+  // photo feature blocks
+  document.getElementById("features").innerHTML = (C.features || []).filter(function (f) { return f.show !== false; }).map(function (f, k) {
+    return '<div class="feature' + (k % 2 ? " rev" : "") + '"><div class="ph"><img loading="lazy" src="' + esc(f.img) + '" alt=""></div>' +
+      '<div class="box"><div class="inner"><div class="icn">' + esc(f.icon || "") + "</div><h3>" + esc(L4(f.title)) +
+      '</h3><div class="title" style="margin:0"><div class="div"></div></div><p>' + esc(L4(f.text)) + "</p></div></div></div>";
+  }).join("");
+  // QR code
+  if (C.images && C.images.qr) document.getElementById("qr").innerHTML = '<div><img src="' + esc(C.images.qr) + '" alt="QR" style="max-width:220px;margin:0 auto 10px"><b>' +
+    esc(MoliText("scan_to_order_on_wechat", "微信扫码点餐", "Scan to order on WeChat")) + "</b></div>";
+}
 (function () {
   var s = document.getElementById("slides"), n = s.children.length, i = 0, d = document.getElementById("dots"), timer;
   for (var k = 0; k < n; k++) { var b = document.createElement("button"); b.setAttribute("aria-label", "Slide " + (k + 1)); (function (k) { b.onclick = function () { go(k); }; })(k); d.appendChild(b); }
-  function go(k) { i = (k + n) % n; s.style.transform = "translateX(" + (-100 * i) + "%)";
+  function go(k) { if (!n) return; i = (k + n) % n; s.style.transform = "translateX(" + (-100 * i) + "%)";
     for (var j = 0; j < n; j++) d.children[j].className = j === i ? "on" : "";
     clearInterval(timer); timer = setInterval(function () { go(i + 1); }, 5000); }
   document.getElementById("prev").onclick = function () { go(i - 1); };

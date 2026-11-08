@@ -1,0 +1,1244 @@
+{
+ "version": 1,
+ "site": {
+  "phone": "",
+  "wechat": "茉莉品味",
+  "address": {
+   "zh": "",
+   "en": "",
+   "ar": "",
+   "tr": ""
+  },
+  "hours": [
+   {
+    "day": {
+     "zh": "周一",
+     "en": "Monday",
+     "ar": "الاثنين",
+     "tr": "Pazartesi"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周二",
+     "en": "Tuesday",
+     "ar": "الثلاثاء",
+     "tr": "Salı"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周三",
+     "en": "Wednesday",
+     "ar": "الأربعاء",
+     "tr": "Çarşamba"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周四",
+     "en": "Thursday",
+     "ar": "الخميس",
+     "tr": "Perşembe"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周五",
+     "en": "Friday",
+     "ar": "الجمعة",
+     "tr": "Cuma"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周六",
+     "en": "Saturday",
+     "ar": "السبت",
+     "tr": "Cumartesi"
+    },
+    "time": "",
+    "closed": false
+   },
+   {
+    "day": {
+     "zh": "周日",
+     "en": "Sunday",
+     "ar": "الأحد",
+     "tr": "Pazar"
+    },
+    "closed": true,
+    "time": ""
+   }
+  ]
+ },
+ "banners": [
+  {
+   "img": "img/banners/b0new.webp",
+   "img_m": "img/banners/b0new-m.webp",
+   "link": "menu.html#sandwich",
+   "alt": "NEW Napolitano Sandwich 新品上市",
+   "show": true
+  },
+  {
+   "img": "img/banners/b0soon.webp",
+   "img_m": "img/banners/b0soon-m.webp",
+   "link": "#order",
+   "alt": "Coming soon 敬请期待",
+   "show": true
+  },
+  {
+   "img": "img/banners/b1.webp",
+   "img_m": "img/banners/b1-m.webp",
+   "link": "menu.html#pizza",
+   "alt": "Neapolitan Pizza 正宗那不勒斯披萨",
+   "show": true
+  },
+  {
+   "img": "img/banners/b2.webp",
+   "img_m": "img/banners/b2-m.webp",
+   "link": "menu.html#sandwich",
+   "alt": "Moli Sub & Napolitano 现烤三明治",
+   "show": true
+  },
+  {
+   "img": "img/banners/b3.webp",
+   "img_m": "img/banners/b3-m.webp",
+   "link": "menu.html#gelato",
+   "alt": "Gelato Daily Fresh 意式冰淇淋",
+   "show": true
+  },
+  {
+   "img": "img/banners/b4.webp",
+   "img_m": "img/banners/b4-m.webp",
+   "link": "menu.html#coffee",
+   "alt": "Coffee & Drinks 咖啡与饮品",
+   "show": true
+  }
+ ],
+ "ads": [
+  {
+   "img": "img/menu/napo-grilled-beef.webp",
+   "link": "menu.html#sandwich",
+   "badge": {
+    "zh": "新品",
+    "en": "NEW",
+    "ar": "جديد",
+    "tr": "YENİ"
+   },
+   "title": {
+    "zh": "那不勒斯三明治",
+    "en": "Napolitano Sandwich",
+    "ar": "سندويش نابوليتانو",
+    "tr": "Napolitano Sandviç"
+   },
+   "sub": {
+    "zh": "用披萨面团现烤的三明治",
+    "en": "Baked from our pizza dough",
+    "ar": "مخبوز من عجينة البيتزا الخاصة بنا",
+    "tr": "Pizza hamurumuzdan pişirilir"
+   },
+   "price": {
+    "zh": "¥45 起",
+    "en": "from ¥45",
+    "ar": "ابتداءً من ¥45",
+    "tr": "¥45'den başlayan"
+   },
+   "cta": {
+    "zh": "查看 →",
+    "en": "See more →",
+    "ar": "اكتشف ←",
+    "tr": "Keşfet →"
+   },
+   "show": true,
+   "color": "#d7263d"
+  },
+  {
+   "img": "img/menu/pizza-zatar-cheese.webp",
+   "link": "menu.html#pizza",
+   "badge": {
+    "zh": "招牌",
+    "en": "SIGNATURE",
+    "ar": "الأشهر",
+    "tr": "İMZA LEZZET"
+   },
+   "title": {
+    "zh": "那不勒斯披萨",
+    "en": "Neapolitan Pizza",
+    "ar": "بيتزا نابولية",
+    "tr": "Napoli Pizzası"
+   },
+   "sub": {
+    "zh": "11 种口味，现点现烤",
+    "en": "11 flavours, baked to order",
+    "ar": "11 نكهة، تُخبز عند الطلب",
+    "tr": "11 çeşit, siparişe göre pişer"
+   },
+   "price": {
+    "zh": "¥58 起",
+    "en": "from ¥58",
+    "ar": "ابتداءً من ¥58",
+    "tr": "¥58'den başlayan"
+   },
+   "cta": {
+    "zh": "查看 →",
+    "en": "See more →",
+    "ar": "اكتشف ←",
+    "tr": "Keşfet →"
+   },
+   "show": true,
+   "color": "#dfa25f"
+  },
+  {
+   "img": "img/menu/burger-beef.webp",
+   "link": "menu.html#burger",
+   "badge": {
+    "zh": "每日现烤",
+    "en": "BAKED DAILY",
+    "ar": "يُخبز يومياً",
+    "tr": "HER GÜN TAZE"
+   },
+   "title": {
+    "zh": "自家现烤面包",
+    "en": "Fresh-Baked Bread",
+    "ar": "خبز طازج من فرننا",
+    "tr": "Taze Fırından Ekmek"
+   },
+   "sub": {
+    "zh": "汉堡面包和潜艇面包，自家烘烤",
+    "en": "Our own burger buns & sub rolls",
+    "ar": "خبز البرغر والسندويشات من فرننا",
+    "tr": "Kendi burger ve sandviç ekmeklerimiz"
+   },
+   "price": {
+    "zh": "汉堡 ¥38 起",
+    "en": "Burgers from ¥38",
+    "ar": "البرغر ابتداءً من ¥38",
+    "tr": "Burgerler ¥38'den başlayan"
+   },
+   "cta": {
+    "zh": "查看 →",
+    "en": "See more →",
+    "ar": "اكتشف ←",
+    "tr": "Keşfet →"
+   },
+   "show": true,
+   "color": "#2f8f4e"
+  },
+  {
+   "img": "img/menu/gelato-pistachio.webp",
+   "link": "menu.html#gelato",
+   "badge": {
+    "zh": "每日新鲜",
+    "en": "DAILY FRESH",
+    "ar": "طازج يومياً",
+    "tr": "GÜNLÜK TAZE"
+   },
+   "title": {
+    "zh": "意式冰淇淋",
+    "en": "Gelato",
+    "ar": "جيلاتو",
+    "tr": "Gelato"
+   },
+   "sub": {
+    "zh": "开心果 · 芒果 · 巧克力",
+    "en": "Pistachio · Mango · Chocolate",
+    "ar": "فستق · مانجو · شوكولاتة",
+    "tr": "Antep fıstığı · Mango · Çikolata"
+   },
+   "price": {
+    "zh": "¥16 起",
+    "en": "from ¥16",
+    "ar": "ابتداءً من ¥16",
+    "tr": "¥16'dan başlayan"
+   },
+   "cta": {
+    "zh": "查看 →",
+    "en": "See more →",
+    "ar": "اكتشف ←",
+    "tr": "Keşfet →"
+   },
+   "show": true,
+   "color": "#7a4ad1"
+  }
+ ],
+ "features": [
+  {
+   "img": "img/menu/pizza-zatar.webp",
+   "icon": "🔥",
+   "title": {
+    "zh": "那不勒斯风格",
+    "en": "Napoletana Style",
+    "ar": "على الطريقة النابولية",
+    "tr": "Napoli Usulü"
+   },
+   "text": {
+    "zh": "高温烤制，饼边蓬松带焦斑，饼底柔软。11 种口味，从 ¥58 起。",
+    "en": "Baked hot and fast for a puffy, blistered crust and a soft centre. 11 flavours, from ¥58.",
+    "ar": "تُخبز على حرارة عالية وبسرعة لأطراف منتفخة ووسط طري. 11 نكهة، تبدأ من ¥58.",
+    "tr": "Kabarık, benekli kenarlar ve yumuşak bir orta için yüksek ısıda hızla pişirilir. 11 çeşit, ¥58'den başlayan fiyatlarla."
+   },
+   "show": true
+  },
+  {
+   "img": "img/menu/gelato-pistachio.webp",
+   "icon": "🍨",
+   "title": {
+    "zh": "每日新鲜",
+    "en": "Only Fresh, Every Day",
+    "ar": "طازج فقط، كل يوم",
+    "tr": "Her Gün Sadece Taze"
+   },
+   "text": {
+    "zh": "意式冰淇淋每天新鲜制作：开心果、芒果、巧克力，从 ¥16 起。",
+    "en": "Our gelato is made fresh daily — pistachio, mango and chocolate, from ¥16.",
+    "ar": "الجيلاتو لدينا يُحضّر طازجاً يومياً — فستق، مانجو وشوكولاتة، يبدأ من ¥16.",
+    "tr": "Gelatomuz her gün taze yapılır — antep fıstığı, mango ve çikolata, ¥16'dan başlayan fiyatlarla."
+   },
+   "show": true
+  },
+  {
+   "img": "img/menu/sub-cheese.webp",
+   "icon": "🥖",
+   "title": {
+    "zh": "自家现烤面包",
+    "en": "Fresh-Baked Bread",
+    "ar": "خبز طازج من فرننا",
+    "tr": "Taze Fırından Ekmek"
+   },
+   "text": {
+    "zh": "我们每天亲手烘烤面包——潜艇三明治面包和汉堡面包都是自家烤箱新鲜出炉，松软香浓。",
+    "en": "We bake our own bread every day — our sub rolls and burger buns come fresh out of our oven, soft and full of flavour.",
+    "ar": "نخبز خبزنا بأنفسنا كل يوم — خبز السندويشات وخبز البرغر يخرج طازجاً من فرننا، طرياً ومليئاً بالنكهة.",
+    "tr": "Ekmeğimizi her gün kendimiz pişiriyoruz — sandviç ekmeklerimiz ve burger ekmeklerimiz fırınımızdan taze, yumuşacık ve lezzet dolu çıkıyor."
+   },
+   "show": true
+  }
+ ],
+ "images": {
+  "intro_bg": "img/menu/pizza-zatar-cheese.webp",
+  "menu_bg": "img/menu/pizza-zatar-cheese.webp",
+  "qr": ""
+ },
+ "texts": {
+  "new": {
+   "zh": "新品",
+   "en": "NEW",
+   "ar": "جديد",
+   "tr": "YENİ"
+  },
+  "napolitano_sandwich": {
+   "zh": "那不勒斯三明治",
+   "en": "Napolitano Sandwich",
+   "ar": "سندويش نابوليتانو",
+   "tr": "Napolitano Sandviç"
+  },
+  "baked_from_our_pizza_dough": {
+   "zh": "用披萨面团现烤的三明治",
+   "en": "Baked from our pizza dough",
+   "ar": "مخبوز من عجينة البيتزا الخاصة بنا",
+   "tr": "Pizza hamurumuzdan pişirilir"
+  },
+  "from_45": {
+   "zh": "¥45 起",
+   "en": "from ¥45",
+   "ar": "ابتداءً من ¥45",
+   "tr": "¥45'den başlayan"
+  },
+  "see_more": {
+   "zh": "查看 →",
+   "en": "See more →",
+   "ar": "اكتشف ←",
+   "tr": "Keşfet →"
+  },
+  "signature": {
+   "zh": "招牌",
+   "en": "SIGNATURE",
+   "ar": "الأشهر",
+   "tr": "İMZA LEZZET"
+  },
+  "neapolitan_pizza": {
+   "zh": "那不勒斯披萨",
+   "en": "Neapolitan Pizza",
+   "ar": "بيتزا نابولية",
+   "tr": "Napoli Pizzası"
+  },
+  "11_flavours_baked_to_order": {
+   "zh": "11 种口味，现点现烤",
+   "en": "11 flavours, baked to order",
+   "ar": "11 نكهة، تُخبز عند الطلب",
+   "tr": "11 çeşit, siparişe göre pişer"
+  },
+  "from_58": {
+   "zh": "¥58 起",
+   "en": "from ¥58",
+   "ar": "ابتداءً من ¥58",
+   "tr": "¥58'den başlayan"
+  },
+  "baked_daily": {
+   "zh": "每日现烤",
+   "en": "BAKED DAILY",
+   "ar": "يُخبز يومياً",
+   "tr": "HER GÜN TAZE"
+  },
+  "fresh_baked_bread": {
+   "zh": "自家现烤面包",
+   "en": "Fresh-Baked Bread",
+   "ar": "خبز طازج من فرننا",
+   "tr": "Taze Fırından Ekmek"
+  },
+  "our_own_burger_buns_sub_roll": {
+   "zh": "汉堡面包和潜艇面包，自家烘烤",
+   "en": "Our own burger buns & sub rolls",
+   "ar": "خبز البرغر والسندويشات من فرننا",
+   "tr": "Kendi burger ve sandviç ekmeklerimiz"
+  },
+  "burgers_from_38": {
+   "zh": "汉堡 ¥38 起",
+   "en": "Burgers from ¥38",
+   "ar": "البرغر ابتداءً من ¥38",
+   "tr": "Burgerler ¥38'den başlayan"
+  },
+  "daily_fresh": {
+   "zh": "每日新鲜",
+   "en": "DAILY FRESH",
+   "ar": "طازج يومياً",
+   "tr": "GÜNLÜK TAZE"
+  },
+  "gelato": {
+   "zh": "意式冰淇淋",
+   "en": "Gelato",
+   "ar": "جيلاتو",
+   "tr": "Gelato"
+  },
+  "pistachio_mango_chocolate": {
+   "zh": "开心果 · 芒果 · 巧克力",
+   "en": "Pistachio · Mango · Chocolate",
+   "ar": "فستق · مانجو · شوكولاتة",
+   "tr": "Antep fıstığı · Mango · Çikolata"
+  },
+  "from_16": {
+   "zh": "¥16 起",
+   "en": "from ¥16",
+   "ar": "ابتداءً من ¥16",
+   "tr": "¥16'dan başlayan"
+  },
+  "order_on_wechat_dine_in_pick": {
+   "zh": "微信点餐 · 堂食 | 自取 | 配送",
+   "en": "ORDER ON WECHAT · DINE-IN | PICKUP | DELIVERY",
+   "ar": "اطلب عبر وي تشات · في المطعم | استلام | توصيل",
+   "tr": "WECHAT'TEN SİPARİŞ · RESTORANDA | GEL-AL | TESLİMAT"
+  },
+  "view_menu": {
+   "zh": "查看菜单",
+   "en": "View Menu",
+   "ar": "عرض القائمة",
+   "tr": "Menüyü Gör"
+  },
+  "new_flavors": {
+   "zh": "新鲜风味",
+   "en": "New Flavors",
+   "ar": "نكهات جديدة",
+   "tr": "Yeni Lezzetler"
+  },
+  "explore_the_menu": {
+   "zh": "浏览完整菜单",
+   "en": "Explore the Menu",
+   "ar": "استكشف القائمة",
+   "tr": "Menüyü Keşfet"
+  },
+  "special_dishes": {
+   "zh": "招牌推荐",
+   "en": "Special Dishes",
+   "ar": "أطباق مميزة",
+   "tr": "Özel Lezzetler"
+  },
+  "view_full_menu": {
+   "zh": "查看完整菜单",
+   "en": "View Full Menu",
+   "ar": "عرض القائمة الكاملة",
+   "tr": "Tüm Menüyü Gör"
+  },
+  "order_on_wechat": {
+   "zh": "打开微信 · 搜索「茉莉品味」",
+   "en": "Order on WeChat · “茉莉品味”",
+   "ar": "اطلب عبر وي تشات · «<bdi>茉莉品味</bdi>»",
+   "tr": "WeChat'ten sipariş · “茉莉品味”"
+  },
+  "open_the_mini_program_and_ch": {
+   "zh": "在小程序中点餐，选择堂食、自取或配送",
+   "en": "Open the mini program and choose dine-in, pickup or delivery",
+   "ar": "افتح البرنامج المصغّر واختر: في المطعم، استلام أو توصيل",
+   "tr": "Mini programı açın; restoranda, gel-al veya teslimatı seçin"
+  },
+  "dine_in": {
+   "zh": "堂食",
+   "en": "DINE-IN",
+   "ar": "في المطعم",
+   "tr": "RESTORANDA"
+  },
+  "pickup": {
+   "zh": "自取",
+   "en": "PICKUP",
+   "ar": "استلام",
+   "tr": "GEL-AL"
+  },
+  "delivery": {
+   "zh": "配送",
+   "en": "DELIVERY",
+   "ar": "توصيل",
+   "tr": "TESLİMAT"
+  },
+  "napoletana_style": {
+   "zh": "那不勒斯风格",
+   "en": "Napoletana Style",
+   "ar": "على الطريقة النابولية",
+   "tr": "Napoli Usulü"
+  },
+  "baked_hot_and_fast_for_a_puf": {
+   "zh": "高温烤制，饼边蓬松带焦斑，饼底柔软。11 种口味，从 ¥58 起。",
+   "en": "Baked hot and fast for a puffy, blistered crust and a soft centre. 11 flavours, from ¥58.",
+   "ar": "تُخبز على حرارة عالية وبسرعة لأطراف منتفخة ووسط طري. 11 نكهة، تبدأ من ¥58.",
+   "tr": "Kabarık, benekli kenarlar ve yumuşak bir orta için yüksek ısıda hızla pişirilir. 11 çeşit, ¥58'den başlayan fiyatlarla."
+  },
+  "only_fresh_every_day": {
+   "zh": "每日新鲜",
+   "en": "Only Fresh, Every Day",
+   "ar": "طازج فقط، كل يوم",
+   "tr": "Her Gün Sadece Taze"
+  },
+  "our_gelato_is_made_fresh_dai": {
+   "zh": "意式冰淇淋每天新鲜制作：开心果、芒果、巧克力，从 ¥16 起。",
+   "en": "Our gelato is made fresh daily — pistachio, mango and chocolate, from ¥16.",
+   "ar": "الجيلاتو لدينا يُحضّر طازجاً يومياً — فستق، مانجو وشوكولاتة، يبدأ من ¥16.",
+   "tr": "Gelatomuz her gün taze yapılır — antep fıstığı, mango ve çikolata, ¥16'dan başlayan fiyatlarla."
+  },
+  "we_bake_our_own_bread_every": {
+   "zh": "我们每天亲手烘烤面包——潜艇三明治面包和汉堡面包都是自家烤箱新鲜出炉，松软香浓。",
+   "en": "We bake our own bread every day — our sub rolls and burger buns come fresh out of our oven, soft and full of flavour.",
+   "ar": "نخبز خبزنا بأنفسنا كل يوم — خبز السندويشات وخبز البرغر يخرج طازجاً من فرننا، طرياً ومليئاً بالنكهة.",
+   "tr": "Ekmeğimizi her gün kendimiz pişiriyoruz — sandviç ekmeklerimiz ve burger ekmeklerimiz fırınımızdan taze, yumuşacık ve lezzet dolu çıkıyor."
+  },
+  "from_our_menu": {
+   "zh": "更多美味",
+   "en": "From our menu",
+   "ar": "من قائمتنا",
+   "tr": "Menümüzden"
+  },
+  "more_dishes": {
+   "zh": "更多菜品",
+   "en": "More Dishes",
+   "ar": "أطباق أخرى",
+   "tr": "Diğer Lezzetler"
+  },
+  "visit_us": {
+   "zh": "欢迎光临",
+   "en": "Visit us",
+   "ar": "زورونا",
+   "tr": "Bizi ziyaret edin"
+  },
+  "opening_hours": {
+   "zh": "营业时间",
+   "en": "Opening Hours",
+   "ar": "أوقات العمل",
+   "tr": "Çalışma Saatleri"
+  },
+  "weekly_hours": {
+   "zh": "每周营业",
+   "en": "Weekly hours",
+   "ar": "المواعيد الأسبوعية",
+   "tr": "Haftalık saatler"
+  },
+  "scan_to_order_on_wechat": {
+   "zh": "微信扫码点餐",
+   "en": "Scan to order on WeChat",
+   "ar": "امسح الرمز للطلب عبر وي تشات",
+   "tr": "WeChat'ten sipariş için tarayın"
+  },
+  "place_your_mini_program_qr_c": {
+   "zh": "（在此放置小程序二维码 img/qr.jpg）",
+   "en": "(place your mini-program QR code here: img/qr.jpg)",
+   "ar": "(ضع رمز QR للبرنامج المصغّر هنا: img/qr.jpg)",
+   "tr": "(mini program QR kodunuzu buraya koyun: img/qr.jpg)"
+  },
+  "notice_bold": {
+   "zh": "周日休息",
+   "en": "Closed on Sundays",
+   "ar": "مغلق يوم الأحد",
+   "tr": "Pazar günleri kapalıyız"
+  },
+  "notice_text": {
+   "zh": "周一至周六营业 · 堂食 · 自取 · 配送",
+   "en": "Open Monday – Saturday · Dine-in · Pickup · Delivery",
+   "ar": "مفتوح من الاثنين إلى السبت · تناول في المطعم · استلام · توصيل",
+   "tr": "Pazartesi – Cumartesi açığız · Restoranda · Gel-al · Teslimat"
+  },
+  "footer_about": {
+   "zh": "正宗那不勒斯披萨、现烤三明治、汉堡、沙拉、每日新鲜意式冰淇淋与咖啡。",
+   "en": "Neapolitan pizza, fresh-baked sandwiches, burgers, salads, daily fresh gelato and coffee.",
+   "ar": "بيتزا نابولية، سندويشات طازجة من الفرن، برغر، سلطات، جيلاتو طازج يومياً وقهوة.",
+   "tr": "Napoli pizzası, taze fırından sandviçler, burgerler, salatalar, her gün taze gelato ve kahve."
+  },
+  "menu_bread_note": {
+   "zh": "🥖 潜艇面包和汉堡面包均为本店每日新鲜烘烤。",
+   "en": "🥖 Our sub rolls and burger buns are baked fresh in-house every day.",
+   "ar": "🥖 خبز السندويشات وخبز البرغر نخبزه طازجاً في مطعمنا كل يوم.",
+   "tr": "🥖 Sandviç ve burger ekmeklerimiz her gün kendi fırınımızda taze pişirilir."
+  },
+  "menu_intro": {
+   "zh": "「起」表示起步价，规格不同价格不同。下单请使用微信小程序「茉莉品味」。周日休息。",
+   "en": "“+” marks a starting price (sizes vary). Order on the WeChat mini program “茉莉品味”. Closed on Sundays.",
+   "ar": "علامة «+» تعني سعراً ابتدائياً (تختلف الأحجام). اطلب عبر البرنامج المصغّر على وي تشات «<bdi>茉莉品味</bdi>». مغلق يوم الأحد.",
+   "tr": "“+” başlangıç fiyatını gösterir (boyutlar değişir). WeChat mini programı “茉莉品味” üzerinden sipariş verin. Pazar günleri kapalıyız."
+  }
+ },
+ "menu": [
+  {
+   "id": "pizza",
+   "name": {
+    "zh": "披萨",
+    "en": "Pizza",
+    "ar": "بيتزا",
+    "tr": "Pizza"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "奶酪扎塔",
+      "en": "Zatar with Cheese",
+      "ar": "زعتر بالجبنة",
+      "tr": "Peynirli Zahter"
+     },
+     "price": 68,
+     "from": false,
+     "img": "img/menu/pizza-zatar-cheese.webp",
+     "show": true,
+     "home": "special"
+    },
+    {
+     "name": {
+      "zh": "扎塔",
+      "en": "Zatar",
+      "ar": "زعتر",
+      "tr": "Zahter"
+     },
+     "price": 58,
+     "from": false,
+     "img": "img/menu/pizza-zatar.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "凯撒芝士风味炸鸡",
+      "en": "Caesar Fried Chicken",
+      "ar": "دجاج مقلي سيزر",
+      "tr": "Sezar Çıtır Tavuk"
+     },
+     "price": 58,
+     "from": false,
+     "img": "img/menu/pizza-caesar.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "四重奶酪",
+      "en": "Four Cheese",
+      "ar": "أربعة أجبان",
+      "tr": "Dört Peynirli"
+     },
+     "price": 75,
+     "from": false,
+     "img": "img/menu/pizza-four-cheese.webp",
+     "show": true,
+     "home": "more"
+    },
+    {
+     "name": {
+      "zh": "烟熏三文鱼",
+      "en": "Smoked Salmon",
+      "ar": "سلمون مدخن",
+      "tr": "Füme Somon"
+     },
+     "price": 82,
+     "from": false,
+     "img": "img/menu/pizza-smoked-salmon.webp",
+     "show": true,
+     "home": "more"
+    },
+    {
+     "name": {
+      "zh": "鲜烤大虾",
+      "en": "Shrimp",
+      "ar": "روبيان",
+      "tr": "Karides"
+     },
+     "price": 78,
+     "from": true,
+     "img": "img/menu/pizza-shrimp.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "鲜烤牛肉",
+      "en": "Grilled Beef",
+      "ar": "لحم بقري مشوي",
+      "tr": "Izgara Dana"
+     },
+     "price": 75,
+     "from": false,
+     "img": "img/menu/pizza-grilled-beef.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "鲜烤鸡肉",
+      "en": "Grilled Chicken",
+      "ar": "دجاج مشوي",
+      "tr": "Izgara Tavuk"
+     },
+     "price": 68,
+     "from": true,
+     "img": "img/menu/pizza-grilled-chicken.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "混合蔬菜",
+      "en": "Vege Mix",
+      "ar": "خضار مشكلة",
+      "tr": "Karışık Sebze"
+     },
+     "price": 68,
+     "from": false,
+     "img": "img/menu/pizza-vege.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "意式香肠",
+      "en": "Pepperoni",
+      "ar": "ببروني",
+      "tr": "Pepperoni"
+     },
+     "price": 75,
+     "from": false,
+     "img": "img/menu/pizza-pepperoni.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "玛格丽特",
+      "en": "Margherita",
+      "ar": "مارغريتا",
+      "tr": "Margherita"
+     },
+     "price": 68,
+     "from": false,
+     "img": "img/menu/pizza-margherita.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  },
+  {
+   "id": "specials",
+   "name": {
+    "zh": "茉莉特色餐",
+    "en": "Moli Specials",
+    "ar": "أطباق مولي الخاصة",
+    "tr": "Moli Spesyalleri"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "茉莉巨无霸盒",
+      "en": "Moli Big Box",
+      "ar": "صندوق مولي الكبير",
+      "tr": "Moli Büyük Kutu"
+     },
+     "price": 48,
+     "from": false,
+     "img": "img/menu/special-moli-box.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "芝士白酱意面",
+      "en": "Béchamel Cheese Pasta",
+      "ar": "معكرونة بالبشاميل والجبنة",
+      "tr": "Beşamelli Peynirli Makarna"
+     },
+     "price": 58,
+     "from": false,
+     "img": "img/menu/special-bechamel.webp",
+     "show": true,
+     "home": "more"
+    }
+   ]
+  },
+  {
+   "id": "burger",
+   "name": {
+    "zh": "汉堡",
+    "en": "Burgers",
+    "ar": "برغر",
+    "tr": "Burgerler"
+   },
+   "note": true,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "鸡肉汉堡",
+      "en": "Fried Chicken Burger",
+      "ar": "برغر دجاج مقلي",
+      "tr": "Çıtır Tavuk Burger"
+     },
+     "price": 38,
+     "from": true,
+     "img": "img/menu/burger-chicken.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "牛肉汉堡",
+      "en": "Beef Burger",
+      "ar": "برغر لحم",
+      "tr": "Dana Burger"
+     },
+     "price": 48,
+     "from": true,
+     "img": "img/menu/burger-beef.webp",
+     "show": true,
+     "home": "more"
+    }
+   ]
+  },
+  {
+   "id": "sandwich",
+   "name": {
+    "zh": "三明治",
+    "en": "Sandwiches",
+    "ar": "سندويشات",
+    "tr": "Sandviçler"
+   },
+   "note": true,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "茉莉潜艇·鲜烤鸡肉",
+      "en": "Moli Sub · Grilled Chicken",
+      "ar": "مولي ساب · دجاج مشوي",
+      "tr": "Moli Sub · Izgara Tavuk"
+     },
+     "price": 37,
+     "from": false,
+     "img": "img/menu/sub-grilled-chicken.webp",
+     "show": true,
+     "home": "more"
+    },
+    {
+     "name": {
+      "zh": "茉莉潜艇·芝士蔬菜",
+      "en": "Moli Sub · Cheese & Vegetables",
+      "ar": "مولي ساب · جبنة وخضار",
+      "tr": "Moli Sub · Peynir ve Sebze"
+     },
+     "price": 38,
+     "from": false,
+     "img": "img/menu/sub-cheese.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "茉莉潜艇·鲜烤牛肉",
+      "en": "Moli Sub · Grilled Beef",
+      "ar": "مولي ساب · لحم مشوي",
+      "tr": "Moli Sub · Izgara Dana"
+     },
+     "price": 42,
+     "from": false,
+     "img": "img/menu/sub-grilled-beef.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "茉莉潜艇·凯撒芝士风味炸鸡",
+      "en": "Moli Sub · Caesar Fried Chicken",
+      "ar": "مولي ساب · دجاج مقلي سيزر",
+      "tr": "Moli Sub · Sezar Çıtır Tavuk"
+     },
+     "price": 35,
+     "from": false,
+     "img": "img/menu/sub-caesar.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "那不勒斯·芝士蔬菜",
+      "en": "Napolitano · Cheese & Vegetables",
+      "ar": "نابوليتانو · جبنة وخضار",
+      "tr": "Napolitano · Peynir ve Sebze"
+     },
+     "price": 48,
+     "from": false,
+     "img": "img/menu/napo-cheese-veg.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "那不勒斯·鲜烤鸡肉",
+      "en": "Napolitano · Grilled Chicken",
+      "ar": "نابوليتانو · دجاج مشوي",
+      "tr": "Napolitano · Izgara Tavuk"
+     },
+     "price": 48,
+     "from": false,
+     "img": "img/menu/napo-grilled-chicken.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "那不勒斯·鲜烤牛肉",
+      "en": "Napolitano · Grilled Beef",
+      "ar": "نابوليتانو · لحم مشوي",
+      "tr": "Napolitano · Izgara Dana"
+     },
+     "price": 51,
+     "from": false,
+     "img": "img/menu/napo-grilled-beef.webp",
+     "show": true,
+     "home": "special"
+    },
+    {
+     "name": {
+      "zh": "那不勒斯·意式香肠马苏里拉",
+      "en": "Napolitano · Pepperoni Mozzarella",
+      "ar": "نابوليتانو · ببروني وموزاريلا",
+      "tr": "Napolitano · Pepperoni Mozzarella"
+     },
+     "price": 53,
+     "from": false,
+     "img": "img/menu/napo-pepperoni.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "那不勒斯·凯撒芝士风味炸鸡",
+      "en": "Napolitano · Caesar Fried Chicken",
+      "ar": "نابوليتانو · دجاج مقلي سيزر",
+      "tr": "Napolitano · Sezar Çıtır Tavuk"
+     },
+     "price": 45,
+     "from": false,
+     "img": "img/menu/napo-caesar.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  },
+  {
+   "id": "coffee",
+   "name": {
+    "zh": "咖啡",
+    "en": "Coffee",
+    "ar": "قهوة",
+    "tr": "Kahve"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "卡布奇诺",
+      "en": "Cappuccino",
+      "ar": "كابتشينو",
+      "tr": "Cappuccino"
+     },
+     "price": 30,
+     "from": false,
+     "img": "img/menu/coffee-cappuccino.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "拿铁",
+      "en": "Latte",
+      "ar": "لاتيه",
+      "tr": "Latte"
+     },
+     "price": 28,
+     "from": false,
+     "img": "img/menu/coffee-latte.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "美式",
+      "en": "Americano",
+      "ar": "أمريكانو",
+      "tr": "Americano"
+     },
+     "price": 15,
+     "from": true,
+     "img": "img/menu/coffee-americano.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "浓缩咖啡",
+      "en": "Espresso",
+      "ar": "إسبريسو",
+      "tr": "Espresso"
+     },
+     "price": 18,
+     "from": true,
+     "img": "img/menu/coffee-espresso.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  },
+  {
+   "id": "drinks",
+   "name": {
+    "zh": "饮品",
+    "en": "Drinks",
+    "ar": "مشروبات",
+    "tr": "İçecekler"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "冰草莓果汁",
+      "en": "Iced Strawberry Juice",
+      "ar": "عصير فراولة مثلج",
+      "tr": "Buzlu Çilek Suyu"
+     },
+     "price": 22,
+     "from": false,
+     "img": "img/menu/drink-strawberry.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  },
+  {
+   "id": "gelato",
+   "name": {
+    "zh": "意式冰淇淋",
+    "en": "Gelato",
+    "ar": "جيلاتو",
+    "tr": "Gelato"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "芒果",
+      "en": "Mango",
+      "ar": "مانجو",
+      "tr": "Mango"
+     },
+     "price": 16,
+     "from": false,
+     "img": "img/menu/gelato-mango.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "巧克力",
+      "en": "Chocolate",
+      "ar": "شوكولاتة",
+      "tr": "Çikolata"
+     },
+     "price": 18,
+     "from": false,
+     "img": "img/menu/gelato-chocolate.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "开心果",
+      "en": "Pistachio",
+      "ar": "فستق حلبي",
+      "tr": "Antep Fıstığı"
+     },
+     "price": 22,
+     "from": false,
+     "img": "img/menu/gelato-pistachio.webp",
+     "show": true,
+     "home": "special"
+    }
+   ]
+  },
+  {
+   "id": "salad",
+   "name": {
+    "zh": "沙拉",
+    "en": "Salads",
+    "ar": "سلطات",
+    "tr": "Salatalar"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "菲达奶酪沙拉",
+      "en": "Feta Green Salad",
+      "ar": "سلطة خضراء بالفيتا",
+      "tr": "Beyaz Peynirli Yeşil Salata"
+     },
+     "price": 28,
+     "from": true,
+     "img": "img/menu/salad-feta.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "三文鱼沙拉",
+      "en": "Salmon Salad",
+      "ar": "سلطة سلمون",
+      "tr": "Somonlu Salata"
+     },
+     "price": 32,
+     "from": true,
+     "img": "img/menu/salad-salmon.webp",
+     "show": true,
+     "home": "more"
+    },
+    {
+     "name": {
+      "zh": "凯撒沙拉",
+      "en": "Caesar Salad",
+      "ar": "سلطة سيزر",
+      "tr": "Sezar Salata"
+     },
+     "price": 25,
+     "from": true,
+     "img": "img/menu/salad-caesar.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "绿色沙拉",
+      "en": "Green Salad",
+      "ar": "سلطة خضراء",
+      "tr": "Yeşil Salata"
+     },
+     "price": 18,
+     "from": true,
+     "img": "img/menu/salad-green.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  },
+  {
+   "id": "snacks",
+   "name": {
+    "zh": "小吃",
+    "en": "Snacks",
+    "ar": "مقبلات خفيفة",
+    "tr": "Atıştırmalıklar"
+   },
+   "note": false,
+   "show": true,
+   "items": [
+    {
+     "name": {
+      "zh": "鸡柳",
+      "en": "Chicken Nuggets",
+      "ar": "أصابع دجاج",
+      "tr": "Çıtır Tavuk Parçaları"
+     },
+     "price": 20,
+     "from": false,
+     "img": "img/menu/snack-nuggets.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "鹰嘴豆泥+面包",
+      "en": "Hummus with Bread",
+      "ar": "حمص مع خبز",
+      "tr": "Ekmekli Humus"
+     },
+     "price": 28,
+     "from": false,
+     "img": "img/menu/snack-hummus-bread.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "鹰嘴豆泥",
+      "en": "Hummus",
+      "ar": "حمص",
+      "tr": "Humus"
+     },
+     "price": 20,
+     "from": false,
+     "img": "img/menu/snack-hummus.webp",
+     "show": true,
+     "home": ""
+    },
+    {
+     "name": {
+      "zh": "薯条",
+      "en": "Fries",
+      "ar": "بطاطا مقلية",
+      "tr": "Patates Kızartması"
+     },
+     "price": 15,
+     "from": true,
+     "img": "img/menu/snack-fries.webp",
+     "show": true,
+     "home": ""
+    }
+   ]
+  }
+ ]
+}
