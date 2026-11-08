@@ -6,6 +6,7 @@
 <title>Menu 菜单 · Moli Taste 茉莉品味</title>
 <meta name="description" content="Moli Taste full menu: Neapolitan pizza, Moli specials, burgers, sandwiches, coffee, drinks, gelato, salads and snacks.">
 <link rel="stylesheet" href="style.css">
+<script src="site.js" defer></script>
 </head>
 <body>
 <div id="site-header"></div>
@@ -17,10 +18,8 @@
 <div class="tabs"><div class="wrap" id="tabs"></div></div>
 <main id="menu"></main>
 <div id="site-footer"></div>
-<script src="i18n.js"></script>
-<script src="menu-data.js"></script>
-<script src="app.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 MoliInit("menu");
 var L = MoliLang();
 var SCRIPT = { pizza: "Pizzeria", specials: "Specials", burger: "Burgers", sandwich: "Fresh baked", coffee: "Coffee", drinks: "Drinks", gelato: "Daily fresh", salad: "Garden", snacks: "Snacks" };
@@ -41,6 +40,7 @@ function mark() {
   for (var i = 0; i < tabs.length; i++) tabs[i].className = tabs[i].getAttribute("data-id") === cur ? "on" : "";
 }
 window.addEventListener("scroll", mark, { passive: true }); mark();
+});
 </script>
 </body>
 </html>

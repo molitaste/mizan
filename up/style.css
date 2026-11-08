@@ -49,7 +49,7 @@ header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 1px 0 var(-
 .arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(0,0,0,.25);color:#fff;font-size:24px;cursor:pointer;z-index:3}
 .arrow.l{left:18px}.arrow.r{right:18px}
 
-.intro{position:relative;background:var(--navy) url("img/menu/pizza-zatar-cheese.jpg") center/cover;color:#fff;text-align:center}
+.intro{position:relative;background:var(--navy) url("img/menu/pizza-zatar-cheese.webp") center/cover;color:#fff;text-align:center}
 .intro::before{content:"";position:absolute;inset:0;background:rgba(20,14,10,.72)}
 .intro .in{position:relative;max-width:760px;margin:0 auto;padding:70px 20px 60px}
 .intro .big{font-family:var(--script);font-size:56px;line-height:1.1}

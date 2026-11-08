@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moli Taste 茉莉品味 · Neapolitan Pizza, Sandwiches, Gelato & Coffee</title>
 <meta name="description" content="Moli Taste 茉莉品味 — Neapolitan pizza, Moli Sub sandwiches, burgers, salads, daily fresh gelato and coffee. Dine-in, pickup and delivery. Closed on Sundays.">
+<link rel="preload" as="image" href="img/banners/b0new.webp" imagesrcset="img/banners/b0new-m.webp 900w, img/banners/b0new.webp 1600w" imagesizes="100vw">
 <link rel="stylesheet" href="style.css">
+<script src="site.js" defer></script>
 </head>
 <body>
 <div id="site-header"></div>
@@ -13,12 +15,12 @@
 <!-- banners -->
 <div class="hero">
   <div class="slides" id="slides">
-    <a href="menu.html#sandwich"><img src="img/banners/b0new.jpg" alt="NEW Napolitano Sandwich 新品上市"></a>
-    <a href="#order"><img src="img/banners/b0soon.jpg" alt="Coming soon 敬请期待"></a>
-    <a href="menu.html#pizza"><img src="img/banners/b1.jpg" alt="Neapolitan Pizza 正宗那不勒斯披萨"></a>
-    <a href="menu.html#sandwich"><img src="img/banners/b2.jpg" alt="Moli Sub & Napolitano 现烤三明治"></a>
-    <a href="menu.html#gelato"><img src="img/banners/b3.jpg" alt="Gelato Daily Fresh 意式冰淇淋"></a>
-    <a href="menu.html#coffee"><img src="img/banners/b4.jpg" alt="Coffee & Drinks 咖啡与饮品"></a>
+    <a href="menu.html#sandwich"><img src="img/banners/b0new.webp" srcset="img/banners/b0new-m.webp 900w, img/banners/b0new.webp 1600w" sizes="100vw" alt="NEW Napolitano Sandwich 新品上市" fetchpriority="high"></a>
+    <a href="#order"><img data-srcset="img/banners/b0soon-m.webp 900w, img/banners/b0soon.webp 1600w" sizes="100vw" alt="Coming soon 敬请期待"></a>
+    <a href="menu.html#pizza"><img data-srcset="img/banners/b1-m.webp 900w, img/banners/b1.webp 1600w" sizes="100vw" alt="Neapolitan Pizza 正宗那不勒斯披萨"></a>
+    <a href="menu.html#sandwich"><img data-srcset="img/banners/b2-m.webp 900w, img/banners/b2.webp 1600w" sizes="100vw" alt="Moli Sub & Napolitano 现烤三明治"></a>
+    <a href="menu.html#gelato"><img data-srcset="img/banners/b3-m.webp 900w, img/banners/b3.webp 1600w" sizes="100vw" alt="Gelato Daily Fresh 意式冰淇淋"></a>
+    <a href="menu.html#coffee"><img data-srcset="img/banners/b4-m.webp 900w, img/banners/b4.webp 1600w" sizes="100vw" alt="Coffee & Drinks 咖啡与饮品"></a>
   </div>
   <button class="arrow l" id="prev" aria-label="Previous">‹</button>
   <button class="arrow r" id="next" aria-label="Next">›</button>
@@ -74,13 +76,13 @@
     </div>
 
     <div class="feature">
-      <div class="ph"><img src="img/menu/pizza-zatar.jpg" alt=""></div>
+      <div class="ph"><img loading="lazy" src="img/menu/pizza-zatar.webp" alt=""></div>
       <div class="box"><div class="inner"><div class="icn">🔥</div>
         <h3 data-zh="那不勒斯风格" data-en="Napoletana Style"></h3><div class="title" style="margin:0"><div class="div"></div></div>
         <p data-zh="高温烤制，饼边蓬松带焦斑，饼底柔软。11 种口味，从 ¥58 起。" data-en="Baked hot and fast for a puffy, blistered crust and a soft centre. 11 flavours, from ¥58."></p></div></div>
     </div>
     <div class="feature rev">
-      <div class="ph"><img src="img/menu/gelato-pistachio.jpg" alt=""></div>
+      <div class="ph"><img loading="lazy" src="img/menu/gelato-pistachio.webp" alt=""></div>
       <div class="box"><div class="inner"><div class="icn">🍨</div>
         <h3 data-zh="每日新鲜" data-en="Only Fresh, Every Day"></h3><div class="title" style="margin:0"><div class="div"></div></div>
         <p data-zh="意式冰淇淋每天新鲜制作：开心果、芒果、巧克力，从 ¥16 起。" data-en="Our gelato is made fresh daily — pistachio, mango and chocolate, from ¥16."></p></div></div>
@@ -114,10 +116,8 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="i18n.js"></script>
-<script src="menu-data.js"></script>
-<script src="app.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 MoliInit("home");
 var L = MoliLang();
 function find(img) { for (var i = 0; i < MENU.length; i++) for (var j = 0; j < MENU[i].items.length; j++) if (MENU[i].items[j].img === img) return [MENU[i].items[j], MENU[i]]; }
@@ -142,7 +142,10 @@ document.getElementById("addr").innerHTML = (SITE.address_zh ? "📍 " + T(SITE.
   var x0 = null; s.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
   s.addEventListener("touchend", function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); x0 = null; });
   go(0);
+  function rest() { var im = s.querySelectorAll("img[data-srcset]"); for (var q = 0; q < im.length; q++) { im[q].srcset = im[q].getAttribute("data-srcset"); im[q].removeAttribute("data-srcset"); } }
+  if (document.readyState === "complete") setTimeout(rest, 300); else window.addEventListener("load", function () { setTimeout(rest, 300); });
 })();
+});
 </script>
 </body>
 </html>
