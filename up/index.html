@@ -114,6 +114,7 @@
 </section>
 
 <div id="site-footer"></div>
+<script src="i18n.js"></script>
 <script src="menu-data.js"></script>
 <script src="app.js"></script>
 <script>
@@ -121,12 +122,12 @@ MoliInit("home");
 var L = MoliLang();
 function find(img) { for (var i = 0; i < MENU.length; i++) for (var j = 0; j < MENU[i].items.length; j++) if (MENU[i].items[j].img === img) return [MENU[i].items[j], MENU[i]]; }
 function render(id, list) {
-  document.getElementById(id).innerHTML = list.map(function (img) { var f = find(img); return MoliDish(f[0], L === "en" ? f[1].en : f[1].zh); }).join("");
+  document.getElementById(id).innerHTML = list.map(function (img) { var f = find(img); return MoliDish(f[0], MoliName(f[1])); }).join("");
 }
 render("specials", ["pizza-zatar-cheese", "napo-grilled-beef", "gelato-pistachio"]);
 render("more", ["pizza-four-cheese", "pizza-smoked-salmon", "burger-beef", "sub-grilled-chicken", "special-bechamel", "salad-salmon"]);
 document.getElementById("hours").innerHTML = SITE.hours.map(function (d) {
-  return '<tr class="' + (d[2] === null ? "off" : "") + '"><td>' + (L === "en" ? d[1] : d[0]) + "</td><td>" +
+  return '<tr class="' + (d[2] === null ? "off" : "") + '"><td>' + T(d[0], d[1]) + "</td><td>" +
     (d[2] === null ? T("休息", "Closed") : (d[2] || T("营业", "Open"))) + "</td></tr>";
 }).join("");
 document.getElementById("addr").innerHTML = (SITE.address_zh ? "📍 " + T(SITE.address_zh, SITE.address_en || SITE.address_zh) : "") + (SITE.phone ? "<br>☎ " + SITE.phone : "");

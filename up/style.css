@@ -1,0 +1,164 @@
+/* Moli Taste — styled after a classic Neapolitan-restaurant layout:
+   white + soft pattern, tan accent, script eyebrows, condensed uppercase headings, navy bands. */
+:root{
+  --tan:#dfa25f; --tan-d:#c8873f; --red:#d7263d; --red-d:#b51c31; --navy:#232d41; --navy-d:#1a2232;
+  --ink:#111; --text:#555; --line:#ece6dc; --pattern:#f7f5f1;
+  --cond:"Oswald","DIN Condensed","Bahnschrift","Arial Narrow","Roboto Condensed","Segoe UI","Geeza Pro","Noto Sans Arabic",Tahoma,"PingFang SC","Microsoft YaHei",sans-serif;
+  --script:"Segoe Script","Snell Roundhand","Brush Script MT","Bradley Hand","Kaiti SC","STKaiti","KaiTi",cursive;
+  --sans:"Karla","Helvetica Neue",Arial,"Segoe UI","Geeza Pro","Noto Sans Arabic","Noto Naskh Arabic",Tahoma,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1170px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:74px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:34px;height:34px}
+.logo .lt{font-family:var(--script);font-size:26px;font-weight:700;color:var(--ink);line-height:1}
+.logo .lt small{display:block;font-family:var(--cond);font-size:10px;letter-spacing:4px;color:var(--tan);margin-top:4px;text-transform:uppercase}
+.links{display:flex;gap:4px;margin-inline-start:auto;align-items:center}
+.links a{font-family:var(--cond);text-transform:uppercase;letter-spacing:1.5px;font-size:15px;padding:8px 12px;color:var(--ink)}
+.links a:hover,.links a.on{color:var(--tan)}
+.langs{display:inline-flex;border:1.5px solid var(--tan);border-radius:999px;overflow:hidden;margin-inline-start:8px}
+.lang{font-family:var(--sans);border:none;background:#fff;color:var(--tan-d);padding:5px 11px;cursor:pointer;font-size:13px;font-weight:600}
+.lang+.lang{border-inline-start:1px solid #f0dcc2}
+.lang.on{background:var(--tan);color:#fff}
+.burger{display:none;margin-inline-start:auto;background:none;border:none;font-size:26px;cursor:pointer}
+.notice{background:var(--navy);color:#e9e2d6;font-size:13px;text-align:center;padding:7px 14px;letter-spacing:.3px}
+.notice b{color:var(--tan)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 30px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.4px;border:2px solid transparent;cursor:pointer;transition:.25s}
+.btn.tan{background:var(--tan);color:#fff}.btn.tan:hover{background:var(--tan-d)}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:var(--red-d)}
+.btn.line{border-color:#fff;color:#fff}.btn.line:hover{background:#fff;color:var(--ink)}
+
+/* ---------- hero (banner slider with centred logo block) ---------- */
+.hero{position:relative;overflow:hidden;background:#1a0f08;margin:0 auto;direction:ltr}
+.slides{display:flex;transition:transform .8s ease}
+.slides>a{flex:0 0 100%;min-width:100%}
+.slides img{width:100%;aspect-ratio:1920/720;object-fit:cover}
+.dots{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:10px;z-index:3}
+.dots button{width:10px;height:10px;border-radius:50%;border:2px solid #fff;background:transparent;cursor:pointer;padding:0}
+.dots button.on{background:var(--tan);border-color:var(--tan)}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(0,0,0,.25);color:#fff;font-size:24px;cursor:pointer;z-index:3}
+.arrow.l{left:18px}.arrow.r{right:18px}
+
+.intro{position:relative;background:var(--navy) url("img/menu/pizza-zatar-cheese.jpg") center/cover;color:#fff;text-align:center}
+.intro::before{content:"";position:absolute;inset:0;background:rgba(20,14,10,.72)}
+.intro .in{position:relative;max-width:760px;margin:0 auto;padding:70px 20px 60px}
+.intro .big{font-family:var(--script);font-size:56px;line-height:1.1}
+.intro .tag{font-family:var(--cond);letter-spacing:6px;color:var(--tan);font-size:13px;text-transform:uppercase;margin-top:6px}
+.intro hr{width:60px;border:none;border-top:2px solid var(--tan);margin:22px auto}
+.intro p{font-size:16px;opacity:.95}
+.intro p b{color:#fff}
+.intro .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.intro .meta{display:flex;justify-content:space-between;align-items:center;margin-top:40px;font-size:14px;flex-wrap:wrap;gap:10px}
+
+/* ---------- section titles ---------- */
+section.s{padding:90px 0}
+section.pattern{background-color:var(--pattern);background-image:radial-gradient(#e4ded3 1px,transparent 1px);background-size:14px 14px}
+.title{text-align:center;margin-bottom:46px}
+.title .scr{font-family:var(--script);color:var(--tan);font-size:34px;line-height:1}
+.title h2{font-family:var(--cond);text-transform:uppercase;font-size:34px;font-weight:700;letter-spacing:1px;line-height:1.2;margin-top:6px}
+.title .div{width:60px;height:6px;margin:16px auto 0;border-top:2px solid var(--tan);border-bottom:2px solid var(--tan)}
+.title p{color:var(--text);max-width:620px;margin:16px auto 0}
+.cols{columns:2;column-gap:40px;color:var(--text);max-width:960px;margin:0 auto}
+.center{text-align:center;margin-top:40px}
+
+/* ---------- dish cards ---------- */
+.dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.dish{background:#fff}
+.dish .im{position:relative;overflow:hidden;aspect-ratio:4/3;background:#eee}
+.dish .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.dish:hover .im img{transform:scale(1.07)}
+.dish .cat{position:absolute;top:12px;inset-inline-end:12px;background:var(--tan);color:#fff;font-family:var(--cond);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px}
+.dish .bd{padding:16px 2px 4px}
+.dish .row{display:flex;align-items:baseline;gap:8px}
+.dish .nm{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:17px;letter-spacing:.5px;line-height:1.3}
+.dish .dots{flex:1;border-bottom:2px dotted #cfc6b8;transform:translateY(-4px);position:static;display:block}
+.dish .pr{font-family:var(--cond);font-size:18px;font-weight:700;white-space:nowrap}
+.dish .pr small{font-size:12px;color:var(--text);margin-left:2px}
+.dish .sub{color:#888;font-size:13.5px;margin-top:2px}
+
+/* ---------- navy band (order) ---------- */
+.band{border:12px solid #f2d3ad;background:var(--navy) radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/16px 16px;color:#fff;text-align:center;padding:56px 24px}
+.band .ic{font-size:44px;line-height:1}
+.band h2{font-family:var(--cond);text-transform:uppercase;font-size:34px;letter-spacing:1px;margin-top:10px}
+.band p{opacity:.85;margin-top:8px}
+.band .modes{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.band .modes span{border:1.5px solid var(--tan);color:#f2d3ad;border-radius:999px;padding:6px 18px;font-family:var(--cond);letter-spacing:1px}
+
+/* ---------- feature blocks ---------- */
+.feature{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;margin-top:60px}
+.feature .ph{aspect-ratio:4/3.3;overflow:hidden}
+.feature .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 80%}
+.feature .box{background:#fff;margin-inline-start:-90px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.08);position:relative}
+.feature .box .inner{border:1px solid var(--line);padding:44px 34px;text-align:center}
+.feature .box .icn{font-size:40px}
+.feature .box h3{font-family:var(--cond);text-transform:uppercase;font-size:24px;margin-top:10px}
+.feature .box p{color:var(--text);margin-top:10px}
+.feature.rev{grid-template-columns:1fr 1.2fr}
+.feature.rev .ph{order:2}
+.feature.rev .box{margin-inline-start:0;margin-inline-end:-90px;z-index:2}
+
+/* ---------- hours / find us ---------- */
+.find{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch}
+.hours{background:#fff;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.06)}
+.hours .inner{border:1px solid var(--line);padding:36px;text-align:center;height:100%}
+.hours h3{font-family:var(--cond);text-transform:uppercase;font-size:22px}
+.hours table{width:100%;margin-top:18px;border-collapse:collapse}
+.hours td{padding:9px 4px;border-bottom:1px dotted #d9d0c2;text-align:start}
+.hours td:last-child{text-align:end;font-weight:600}
+.hours tr.off td{color:var(--red)}
+.qr{border:2px dashed var(--tan);display:grid;place-items:center;text-align:center;color:var(--text);padding:30px;min-height:240px}
+
+/* ---------- menu page ---------- */
+.mhero{position:relative;color:#fff;text-align:center}
+.mhero img{width:100%;aspect-ratio:1920/520;object-fit:cover}
+.tabs{position:sticky;top:74px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
+.tabs .wrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.tabs a{font-family:var(--cond);text-transform:uppercase;letter-spacing:1px;font-size:14px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line)}
+.tabs a.on{background:var(--tan);border-color:var(--tan);color:#fff}
+.mcat{padding:70px 0 10px;scroll-margin-top:150px}
+
+footer{background:var(--navy-d);color:#b9bfcc;padding:50px 0 30px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer h4{font-family:var(--cond);text-transform:uppercase;color:#fff;letter-spacing:1px;font-size:16px;margin-bottom:10px}
+footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;margin-top:10px;font-size:13px}
+footer a:hover{color:var(--tan)}
+
+@media (max-width:900px){
+  .dishes{grid-template-columns:1fr 1fr;gap:20px}
+  .feature,.feature.rev{grid-template-columns:1fr}
+  .feature .box,.feature.rev .box{margin:-60px 20px 0}
+  .langs{margin:8px 0 0}
+  .feature.rev .ph{order:0}
+  .find{grid-template-columns:1fr}
+  footer .wrap{grid-template-columns:1fr}
+  .links{display:none;position:absolute;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:10px 0 16px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+  .links.open{display:flex}
+  .burger{display:block}
+  .cols{columns:1}
+}
+@media (max-width:560px){
+  .dishes{grid-template-columns:1fr 1fr;gap:14px}
+  .dish .nm{font-size:14px}.dish .pr{font-size:15px}.dish .sub{font-size:12px}
+  .dish .dots{display:none}
+  .dish .row{flex-direction:column;gap:0}
+  section.s{padding:60px 0}
+  .title h2{font-size:26px}.title .scr{font-size:28px}
+  .intro .big{font-size:42px}
+  .arrow{display:none}
+  .band h2{font-size:26px}
+}
+
+/* Arabic: no letter-spacing (it breaks joined letters), slightly larger text */
+[dir=rtl] body{font-size:16px}
+[dir=rtl] .title h2,[dir=rtl] .links a,[dir=rtl] .dish .nm,[dir=rtl] .band h2,[dir=rtl] .tabs a,[dir=rtl] .band .modes span,[dir=rtl] .dish .cat,[dir=rtl] .feature .box h3,[dir=rtl] .hours h3,[dir=rtl] footer h4,[dir=rtl] .btn{letter-spacing:0}
+[dir=rtl] .cols{text-align:right}
