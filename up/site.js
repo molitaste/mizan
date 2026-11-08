@@ -64,6 +64,25 @@ window.I18N = {
     ar: "نخبز خبزنا بأنفسنا كل يوم — خبز السندويشات وخبز البرغر يخرج طازجاً من فرننا، طرياً ومليئاً بالنكهة.",
     tr: "Ekmeğimizi her gün kendimiz pişiriyoruz — sandviç ekmeklerimiz ve burger ekmeklerimiz fırınımızdan taze, yumuşacık ve lezzet dolu çıkıyor." },
 
+  // highlight ads
+  "NEW": { ar: "جديد", tr: "YENİ" },
+  "Napolitano Sandwich": { ar: "سندويش نابوليتانو", tr: "Napolitano Sandviç" },
+  "Baked from our pizza dough": { ar: "مخبوز من عجينة البيتزا الخاصة بنا", tr: "Pizza hamurumuzdan pişirilir" },
+  "from ¥45": { ar: "ابتداءً من ¥45", tr: "¥45'den başlayan" },
+  "SIGNATURE": { ar: "الأشهر", tr: "İMZA LEZZET" },
+  "Neapolitan Pizza": { ar: "بيتزا نابولية", tr: "Napoli Pizzası" },
+  "11 flavours, baked to order": { ar: "11 نكهة، تُخبز عند الطلب", tr: "11 çeşit, siparişe göre pişer" },
+  "from ¥58": { ar: "ابتداءً من ¥58", tr: "¥58'den başlayan" },
+  "BAKED DAILY": { ar: "يُخبز يومياً", tr: "HER GÜN TAZE" },
+  "Fresh-Baked Bread": { ar: "خبز طازج من فرننا", tr: "Taze Fırından Ekmek" },
+  "Our own burger buns & sub rolls": { ar: "خبز البرغر والسندويشات من فرننا", tr: "Kendi burger ve sandviç ekmeklerimiz" },
+  "Burgers from ¥38": { ar: "البرغر ابتداءً من ¥38", tr: "Burgerler ¥38'den başlayan" },
+  "DAILY FRESH": { ar: "طازج يومياً", tr: "GÜNLÜK TAZE" },
+  "Gelato": { ar: "جيلاتو", tr: "Gelato" },
+  "Pistachio · Mango · Chocolate": { ar: "فستق · مانجو · شوكولاتة", tr: "Antep fıstığı · Mango · Çikolata" },
+  "from ¥16": { ar: "ابتداءً من ¥16", tr: "¥16'dan başlayan" },
+  "See more →": { ar: "اكتشف ←", tr: "Keşfet →" },
+
   // menu page
   "🥖 Our sub rolls and burger buns are baked fresh in-house every day.": { ar: "🥖 خبز السندويشات وخبز البرغر نخبزه طازجاً في مطعمنا كل يوم.", tr: "🥖 Sandviç ve burger ekmeklerimiz her gün kendi fırınımızda taze pişirilir." },
   "“+” marks a starting price (sizes vary). Order on the WeChat mini program “茉莉品味”. Closed on Sundays.": {
