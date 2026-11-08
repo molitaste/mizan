@@ -29,7 +29,8 @@ document.getElementById("tabs").innerHTML = MENU.map(function (c) {
 document.getElementById("menu").innerHTML = MENU.map(function (c, k) {
   return '<section class="mcat' + (k % 2 ? " pattern" : "") + '" id="' + c.id + '"><div class="wrap">' +
     '<div class="title"><div class="scr">' + SCRIPT[c.id] + "</div><h2>" + MoliName(c) + " · " + (L === "zh" ? c.en : c.zh) +
-    '</h2><div class="div"></div></div><div class="dishes">' +
+    '</h2><div class="div"></div>' +
+    (c.note ? '<p class="bread">' + T("🥖 潜艇面包和汉堡面包均为本店每日新鲜烘烤。", "🥖 Our sub rolls and burger buns are baked fresh in-house every day.") + "</p>" : "") + '</div><div class="dishes">' +
     c.items.map(function (it) { return MoliDish(it, MoliName(c)); }).join("") + "</div></div></section>";
 }).join("");
 var tabs = document.querySelectorAll("#tabs a");

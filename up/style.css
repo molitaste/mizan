@@ -162,3 +162,4 @@ footer a:hover{color:var(--tan)}
 [dir=rtl] body{font-size:16px}
 [dir=rtl] .title h2,[dir=rtl] .links a,[dir=rtl] .dish .nm,[dir=rtl] .band h2,[dir=rtl] .tabs a,[dir=rtl] .band .modes span,[dir=rtl] .dish .cat,[dir=rtl] .feature .box h3,[dir=rtl] .hours h3,[dir=rtl] footer h4,[dir=rtl] .btn{letter-spacing:0}
 [dir=rtl] .cols{text-align:right}
+.bread{display:inline-block;margin-top:16px;background:#fff6ea;border:1.5px dashed var(--tan);color:#8a5a22;padding:8px 18px;border-radius:999px;font-weight:600;font-size:14px}

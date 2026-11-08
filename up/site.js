@@ -59,7 +59,13 @@ window.I18N = {
   "Scan to order on WeChat": { ar: "امسح الرمز للطلب عبر وي تشات", tr: "WeChat'ten sipariş için tarayın" },
   "(place your mini-program QR code here: img/qr.jpg)": { ar: "(ضع رمز QR للبرنامج المصغّر هنا: img/qr.jpg)", tr: "(mini program QR kodunuzu buraya koyun: img/qr.jpg)" },
 
+  "Fresh-Baked Bread": { ar: "خبز طازج من فرننا", tr: "Taze Fırından Ekmek" },
+  "We bake our own bread every day — our sub rolls and burger buns come fresh out of our oven, soft and full of flavour.": {
+    ar: "نخبز خبزنا بأنفسنا كل يوم — خبز السندويشات وخبز البرغر يخرج طازجاً من فرننا، طرياً ومليئاً بالنكهة.",
+    tr: "Ekmeğimizi her gün kendimiz pişiriyoruz — sandviç ekmeklerimiz ve burger ekmeklerimiz fırınımızdan taze, yumuşacık ve lezzet dolu çıkıyor." },
+
   // menu page
+  "🥖 Our sub rolls and burger buns are baked fresh in-house every day.": { ar: "🥖 خبز السندويشات وخبز البرغر نخبزه طازجاً في مطعمنا كل يوم.", tr: "🥖 Sandviç ve burger ekmeklerimiz her gün kendi fırınımızda taze pişirilir." },
   "“+” marks a starting price (sizes vary). Order on the WeChat mini program “茉莉品味”. Closed on Sundays.": {
     ar: "علامة «+» تعني سعراً ابتدائياً (تختلف الأحجام). اطلب عبر البرنامج المصغّر على وي تشات «<bdi>茉莉品味</bdi>». مغلق يوم الأحد.",
     tr: "“+” başlangıç fiyatını gösterir (boyutlar değişir). WeChat mini programı “茉莉品味” üzerinden sipariş verin. Pazar günleri kapalıyız." },
@@ -86,11 +92,11 @@ window.MENU = [
     { zh: "茉莉巨无霸盒", en: "Moli Big Box", ar: "صندوق مولي الكبير", tr: "Moli Büyük Kutu", price: 48, img: "special-moli-box" },
     { zh: "芝士白酱意面", en: "Béchamel Cheese Pasta", ar: "معكرونة بالبشاميل والجبنة", tr: "Beşamelli Peynirli Makarna", price: 58, img: "special-bechamel" },
   ]},
-  { id: "burger", zh: "汉堡", en: "Burgers", ar: "برغر", tr: "Burgerler", items: [
+  { id: "burger", note: true, zh: "汉堡", en: "Burgers", ar: "برغر", tr: "Burgerler", items: [
     { zh: "鸡肉汉堡", en: "Fried Chicken Burger", ar: "برغر دجاج مقلي", tr: "Çıtır Tavuk Burger", price: 38, from: true, img: "burger-chicken" },
     { zh: "牛肉汉堡", en: "Beef Burger", ar: "برغر لحم", tr: "Dana Burger", price: 48, from: true, img: "burger-beef" },
   ]},
-  { id: "sandwich", zh: "三明治", en: "Sandwiches", ar: "سندويشات", tr: "Sandviçler", items: [
+  { id: "sandwich", note: true, zh: "三明治", en: "Sandwiches", ar: "سندويشات", tr: "Sandviçler", items: [
     { zh: "茉莉潜艇·鲜烤鸡肉", en: "Moli Sub · Grilled Chicken", ar: "مولي ساب · دجاج مشوي", tr: "Moli Sub · Izgara Tavuk", price: 37, img: "sub-grilled-chicken" },
     { zh: "茉莉潜艇·芝士蔬菜", en: "Moli Sub · Cheese & Vegetables", ar: "مولي ساب · جبنة وخضار", tr: "Moli Sub · Peynir ve Sebze", price: 38, img: "sub-cheese" },
     { zh: "茉莉潜艇·鲜烤牛肉", en: "Moli Sub · Grilled Beef", ar: "مولي ساب · لحم مشوي", tr: "Moli Sub · Izgara Dana", price: 42, img: "sub-grilled-beef" },
